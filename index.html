@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matriz de Análisis de Papers - Tesis</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #1e293b;
+            --secondary-color: #2563eb;
+            --bg-color: #f8fafc;
+            --surface-color: #ffffff;
+            --text-main: #334155;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            padding: 30px;
+            color: var(--text-main);
+        }
+
+        .header-section {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .contenedor {
+            background: var(--surface-color);
+            border-radius: 12px;
+            overflow: auto;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border-color);
+            max-height: 85vh;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            min-width: 4200px;
+            table-layout: fixed;
+        }
+
+        thead {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: var(--primary-color);
+        }
+
+        th {
+            color: #ffffff;
+            padding: 15px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 600;
+            border-right: 1px solid #334155;
+        }
+
+        /* Estilo para los inputs de filtro en los encabezados */
+        .filter-input {
+            width: 100%;
+            margin-top: 10px;
+            padding: 6px 10px;
+            font-size: 12px;
+            border-radius: 4px;
+            border: 1px solid #475569;
+            background: #f1f5f9;
+            color: #1e293b;
+            outline: none;
+        }
+
+        .filter-input:focus {
+            border-color: var(--secondary-color);
+            background: #ffffff;
+        }
+
+        td {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            vertical-align: top;
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--text-main);
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f5f9;
+            transition: 0.2s ease;
+        }
+
+        /* Anchos específicos por importancia de contenido */
+        .col-paper { width: 350px; }
+        .col-cat { width: 150px; }
+        .col-metodo { width: 200px; }
+        .col-extenso { width: 500px; }
+    </style>
+</head>
+
+<body>
+
+    <div class="header-section">
+        <h1>Matriz Completa de Análisis de Papers</h1>
+        <p style="color: #64748b; font-size: 14px;">Utilice los campos de texto en los títulos para filtrar por columna</p>
+    </div>
+
+    <div class="contenedor">
+        <table id="papersTable">
+            <thead>
+                <tr>
+                    <th class="col-paper">Paper <br> <input type="text" class="filter-input" placeholder="Filtrar título..."></th>
+                    <th class="col-cat">Categoría <br> <input type="text" class="filter-input" placeholder="Filtrar categoría..."></th>
+                    <th class="col-metodo">Método / técnica de IA <br> <input type="text" class="filter-input" placeholder="Filtrar técnica..."></th>
+                    <th class="col-extenso">Problema <br> <input type="text" class="filter-input" placeholder="Filtrar problema..."></th>
+                    <th class="col-extenso">Metodología <br> <input type="text" class="filter-input" placeholder="Filtrar metodología..."></th>
+                    <th class="col-extenso">Uso de IA <br> <input type="text" class="filter-input" placeholder="Filtrar uso IA..."></th>
+                    <th class="col-extenso">Hallazgos relevantes <br> <input type="text" class="filter-input" placeholder="Filtrar hallazgos..."></th>
+                    <th class="col-extenso">Vacíos / limitaciones <br> <input type="text" class="filter-input" placeholder="Filtrar vacíos..."></th>
+                    <th class="col-extenso">Conclusiones <br> <input type="text" class="filter-input" placeholder="Filtrar conclusiones..."></th>
+                    <th class="col-extenso">Relación con mi problema <br> <input type="text" class="filter-input" placeholder="Filtrar relación..."></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Development of NOMA-CR System Using Machine Learning Algorithm</td>
+                    <td>Machine Learning</td>
+                    <td>Multiple</td>
+                    <td>El aumento masivo de usuarios móviles en redes 5G genera presión en la red, problemas como la capacidad y la disponibilidad del espectro crecen y los métodos tradicionales de Orthogonal Multiple Access (OMA) no pueden satisfacer dichas demandas, por lo cual se propone una arquitectura basado en Non-Orthogonal Multiple Access combinado con Cognitive Radio (NOMA-CR).</td>
+                    <td>Implementación de una arquitectura Non-Orthogonal Multiple Access combinado con Cognitive Radio (NOMA-CR), El sistema emplea IA mediante un algoritmo de Clustering Jerárquico Aglomerativo donde se hace una extracción de meticas clave como el Indicador de Fuerza de la Señal Recibida (RSSI), latencia y ancho de banda, el modelo integra detección cooperativa de espectro con análisis de falsas alarmas y una asignación dinámica de potencia para maximizar el Sum Rate.</td>
+                    <td>Se realiza una implementación utilizando Machine Learning aplicando un algoritmo de agrupamiento jerárquico aglomerativo para formar clústers de usuarios. Esta técnica utiliza métricas de distancia personalizada como el Indicador de Fuerza de la Señal (RSSI)  de capa física y Calidad de servicio (QoS) de la capa de aplicación para garantizar una agrupación equilibrada entre eficiencia y calidad.
+El sistema también Utiliza IA para la detección cooperativa de espectro a nivel de clúster, juntando los datos de múltiples usuarios con el fin de mejorar la precisión en la identificación del usuario principal y reducir las falsas alarmas. Por último se aplica una asignación dinámica de potencia intra-clúster que mejora notablemente el sum rate y el Throughput del sistema gracias al uso de técnicas de optimización que actúan sobre los coeficientes de potencia de la arquitectura NOMA-CR formada por el algoritmo.</td>
+                    <td>Los resultados de las simulaciones en Python validaron tener un rendimiento superior frente a simualciones de OMA, TDMA y k-NN, entre los resultados tenemos que el Sum Rate obtuvo un 5.8 bps/Hz superando en un 9.4% al enfoque de reinforcement learning que tiene 5.3 bps/Hz. El Throughput registró 58 Mbps muy superior a los 33 Mbps de esquemas mencionados. Estos niveles de optimización permitieron documentar una eficiencia espectral del 95%.</td>
+                    <td>A pesar de que el sistema propuesto ofrece un rendimiento superior, este presenta una complejidad computacional un poco mayor en comparación con los métodos de agrupamiento fijos o estáticos debido a la naturaleza del clustering jerárquico aglomerativo y el modelo asume una cancelación Sucesiva de Interferencias (SIC) ideal en las simulaciones para la cancelación de interferencias lo que puede variar en escenarios reales con estimaciones de canal menos precisas</td>
+                    <td>La arquitectura (NOMA-CR) permite la asignación dinámica del espectro, minimizando el consumo de potencia y la detección de espectro con alertas de falsas alarmas. El sistema demuestra un mejor desempeño general, alcanzando mejores rendimientos y una eficiencia espectral del 95% consolidándose como una buena opción en escenarios ideales para aplicaciones que requieren alta velocidad de datos y eficiencia en el espectro.
+La utilizacion de IA mediante clustering garantiza un uso ideal del espectro que sea eficiente y confiable, además de ser escalable para controlar un número creciente de usuarios lo que ayuda a reducir el problema de la escasez de espectro en áreas de mucha demanda.</td>
+                    <td>El Machine Learning utilizado mediante clustering aglomerativo ofrece una solución de asignación de recursos eficientes consolidando una tendencia hacia su viabilidad operativa en redes de próxima generación, Así mismo su limitación metodológica de ser aplicada en escenarios perfectos puede servir como guía académica para futuras investigaciones bajo condiciones reales de propagación.</td>
+                </tr>
+                <tr>
+                    <td>Predicting the DC Bias and Optimizing BER and PAPR in DCO-OFDM: An Explainable Machine Learning Approach</td>
+                    <td>Machine Learning</td>
+                    <td>Multiple</td>
+                    <td>Hoy en día la naturaleza de los sistemas de modulación de intensidad (IM) genera problemas, donde los LEDS requieren de señales unipolares lo que obliga a los sistemas DCO-OFDM a añadir un sesgo en DC para evitar que la señal sea recortada, esto crea un conflicto en su diseño:
+• Cuando se tiene un sesgo insuficiente se genera ruido de recorte (clipping) lo que ocasiona un degrado en la tasa de error de bits (BER).
+• Cuando se tiene un sesgo excesivo genera problemas en la eficiencia energética.
+La problemática crece a la relación de potencia pico a promedio (PAPR) de las señales OFDM que genera que los LEDS tengan rangos de operación no lineales donde los enfoques tradicionales basados en cálculos analíticos estáticos o asimilaciones ideales como el error cuadrático medio (MMSE) fallan al adaptarse a condiciones dinámicas y que no sean lineales en escenarios LiFi reales.</td>
+                    <td>Mediante simulaciones realizadas en MATLAB se generó un dataset con 20,000 símbolos con variaciones en el orden de modulación QAM (4, 16, 64, 256, 1024) y en el número de subportadoras (64, 128, 256, 512, 1024).Se aplicó la Transformación Yeo-Johnson el cual consiste en un método de preprocesamiento para que los datos tengan una distribución normal y se ajusten de mejor manera a los modelos de regresión para normalizar variables estadísticas como el valor mínimo, máximo y la desviación estándar, El modelo fue validado con un protocolo leak-safe (seguro contra fugas),  con una división de datos del 95% para entrenamiento y 5% para pruebas con el fin de asegurar que el pre procesamiento de la información sea correcto.</td>
+                    <td>Se utilizaron técnicas de Machine Learning, un regresor LightGBM (Light Gradient Boosting Machine) para predecir el valor de cuánta potencia se está gastando para mantener la señal frente al ruido y los recortes (vDC) basándose en estadísticas de la señal. Este modelo fue elegido después de realizar una comparativa entre más de 20 regresores por la capacidad que tiene para manejar grandes volúmenes de datos y minimizar el tiempo de entrenamiento.
+Se utiliza un modelo de regresión de salida múltiple (Gradient Boosting Regressor) para predecir métricas como:
+• vDC (dB)
+• PAPR (Peak-to-Average Power Ratio)
+• TSNR (Target Signal-to-Noise Ratio)
+Estas predicciones fueron utilizadas para Optuna el cual actúa como un motor de optimización mediante el muestreador NSGA-II (Nondominated Sorting Genetic Algorithm II) el cual es un algoritmo que identifica conjuntos de soluciones de las cuales se selecciona un punto de operación final utilizando el criterio de distancia normalizada.
+Se utilizó SHAP (SHapley Additive exPlanations): el cual funciona para realizar un análisis global e individua cuantificando la contribución de cada característica al resultado final basándose en la teoría de juegos.
+LIME (Local Interpretable Model-agnostic Explanations): Utilizado para aproximar el comportamiento del modelo alrededor de una instancia específica usando modelos lineales simples, lo que valida los factores físicos como la desviación estándar y el valor mínimo.</td>
+                    <td>El modelo analizado (LightGBM) alcanzó una precisión casi perfecta en la predicción del sesgo DC con un coeficiente de determinación de 0.9946 demostrando una gran capacidad de generalización en escenarios fuera de distribución al obtener un coeficiente de determinación de 0.7925 ante órdenes de modulación no analizados en el entrenamiento.
+El uso de SHAP validó que la desviación estándar y el valor mínimo de la señal son los factores más influyentes en la determinación del sesgo y la optimización multiobjetivo con Optuna logró identificar puntos de operación que equilibran la potencia (VDC), la PAPR y la TSNR. Esto permitió reducir en gran medida la tasa de error (BER) y la probabilidad de picos de potencia, incluso bajo condiciones de no linealidad del LED.</td>
+                    <td>El estudio carece de pruebas experimentales y depende de un dataset generado en MATLAB. La evaluación fue limitada a canales ópticos estáticos de múltiples trayectorias, otra limitación es que no se integra ruidos prácticos de los sistemas VLC  como el ruido de disparo, el ruido de luz ambiental, límites de ancho de banda o restricciones específicas de iluminación y se requiere una validación futura con hardware real para una evolución hacia una optimización basada en el despliegue real.</td>
+                    <td>La integración de un marco de IA explicable (XAI) permite la selección adaptativa del sesgo DC con una precisión del 0.9946 en el coeficiente de determinación y elimina la dependencia de la información del estado del canal. El estudio determina que este enfoque de control supera a las estrategias de sesgo fijo al reducir simultáneamente la tasa de error de bit (BER) y la relación de potencia pico a promedio (PAPR) manteniendo la capacidad de generalización ante modulaciones no vistos o las no linealidades del LED y canales ópticos de múltiples trayectorias, concluye que el uso de SHAP y LIME garantizan la transparencia necesaria para el diseño de infraestructuras de comunicación 6G.</td>
+                    <td>La optimización de recursos y eficiencia energética aporta una base sólida del control adaptativo del sesgo DC, se valida una la tendencia emergente hacia la IA Explicable (XAI) la cual garantiza la transparencia en sistemas críticos y el rigor del protocolo leak-safe y el análisis multiobjetivo presentados facilitando la identificación de vacíos de investigación como puede ser la necesidad de validación mediante hardware real.</td>
+                </tr>
+                <tr>
+                    <td>Reducing Unnecessary Handovers Using Logistic Regression in 5G Networks</td>
+                    <td>Machine Learning</td>
+                    <td>Regresion Logistica</td>
+                    <td>Muchas veces la movilidad del usuario causa fallas en el servicio y en la experiencia del mismo, el aumento de la capacidad de small cells en redes 5G incrementa la frecuencia de los traspasos, esto genera el conocido efecto Ping-Pong donde el dispositivo alterna reiteradamente entre celdas debido a predicciones incorrectas que se basan en la distancia o fluctuación de la señal.
+Las tecnologías emergentes como las ondas milimétricas tienen problemas al ser altamente susceptibles a interferencias lo que provoca fluctuaciones en la transmisión que afectan la estabilidad de la conexión. Por ello existe una carencia de soluciones ya que los métodos tradicionales son pasivos y las propuestas actuales con el uso de IA suelen presentar una complejidad computacional que dificulta su ejecución en tiempo real.</td>
+                    <td>Se utiliza el software OMNET++ con el framework Simu5G para crear una arquitectura 5G construida por 8 estaciones base y 10 equipos de usuario (UE) con movilidad aleatoria (Random Waypoint) a velocidades próximas de 10 m/s a 60 m/s. Este proceso inició con la recopilación de un dataset durante una simulación de 500,000 segundos para capturar la variabilidad de las señales, donde se extrajo datos como RSRP, SINR, RSSI. El análisis fue dividido en dos grupos: un 70% para entrenamiento del modelo y un 30% para pruebas.
+El desarrollo técnico consistió en el uso de una librería de Regresión Logística en C++, integrada de la capa física de los simuladores utilizados (LtePhyUe y NrPhyUe), aplicando un umbral de decisión de 0.9 en la función sigmoide para asegurar que solo se surjan handovers que tengan un 90% de probabilidad de éxito.</td>
+                    <td>Durante el proceso se aplica el algoritmo de regresión logística de Machine Learning debido a la naturaleza no lineal y logarítmica de las muestras de señal recolectadas durante el proceso. El modelo aplica la función sigmoide para transformar las variables de entrada en un rango de 0 a 1, lo que permite clasificar si el traspaso debe activarse (1) o cancelarse (0).
+Por último se realiza una implementación en C++ que a diferencia de Python permite una gestión de memoria superior y tiempos de ejecución constantes que es vital para procesos de toma de decisiones en tiempo real en redes 5G.</td>
+                    <td>El modelo propuesto logró una reducción aproximada del 50% en la cantidad de ocurrencias de traspasos multicelda en comparación de un escenario base.
+La disminución de interrupciones hizo que se alcance una mejora en el Throughput del 67.26% y se obtuvo un 79.33% de ganancia en complejidad computacional frente a técnicas de reinforcement learning ya que solo requiere una ecuación por cada  invocación. Por último el algoritmo alcanzó una exactitud del 99.8% superando a otros métodos como Support Vector Machine (SVM) con 85% o árbol de decisiones con 82%.</td>
+                    <td>Se basa exclusivamente en simulaciones y carece de validaciones en entornos reales, El modelo no considera aspectos importantes de la red como la latencia o el delay los cuales son importantes para servicios específicos. De igual forma el dataset fue construido bajo parámetros específicos de movilidad y dejo vacíos que se pudieron haber implementado como el uso de técnicas de aprendizaje no supervisado como puede ser K-means para adaptarse a estados de red sin datos previos.</td>
+                    <td>La Regresión Logística en C++ es una herramienta ligera y eficaz para predecir traspasos en redes 5G ya que permite la toma de decisiones en tiempo real sin sobrecargar los recursos. La combinación de la potencia de señal con la distancia es la clave para reducir la carga de señalización y mitigar el efecto Ping-Pong, Esto sirve para optimizar la calidad de servicio (QoS).</td>
+                    <td>Este proyecto ofrece una comparativa de algunos algoritmos (RNN, KNN, SVM, XGBoost) y sus precisiones, lo que facilita la construcción de tu matriz de registro de datos y ofrece datos específicos sobre el impacto de la IA en KPIS de 5G como puede ser el throughput y la interrupción de movilidad.</td>
+                </tr>
+                <tr>
+                    <td>ML-Based Self-Optimization Handover Technique for Beyond 5G Mobile Network</td>
+                    <td>Machine Learning</td>
+                    <td>Decision Trees</td>
+                    <td>Las nuevas tecnologías como las ondas milimétricas y redes ultra-densas en sistemas B5G generan desafíos importantes de movilidad en áreas de pequeñas coberturas y al despliegue masivo de celdas pequeñas. La densificación y el crecimiento de los dispositivos aumentan la complejidad del proceso de handover, elevando la ocurrencia de eventos no deseables como fallas de conexión, disparos lentos y el efecto ping-pong. Los mecanismos actuales de handover son ineficientes para redes nuevas que exigen una optimización rápida y autónoma para soportar velocidades de movilidad ultra-altas y para garantizar servicios ininterrumpidos de ultra-baja latencia.</td>
+                    <td>La implementación tiene un proceso de tres etapas en un entorno de simulación urbana de 3 km x 3 km con 61 estaciones base trabajando en 28 GHz, Utilizando MATLAB se creó un dataset de 50,000 muestras bajo estándares de la sociedad de asociaciones de estándares de telecomunicaciones (3GPP) obteniendo la variabilidad de la potencia de señal (RSRP), calidad de señal (RSRQ) y velocidad del usuario.
+El proceso metodológico incluye el entrenamiento de un modelo de regresión para predecir el tiempo de disparo óptimo con una evaluación al desempeño con métricas como el Error Cuadrático Medio y el Coeficiente de Determinación, Por último el modelo que fue entrenado se unió con el simulador para el preprocesamiento de datos en tiempo real de hasta 200 usuarios por celda con velocidades de hasta 160 km/h.</td>
+                    <td>La técnica aplicada es ML-SOHOT la cual se fundamenta en un enfoque de Aprendizaje Supervisado para automatizar la función de Optimización de Robustez de Movilidad donde se realizó una evaluación comparativa con distintos Modelos:
+• Regresión Lineal
+• Support Vector Machine (SVM)
+• Arbol de Decisiones
+• Regresión de Procesos Gaussianos (GPR)
+• Redes Neuronales.
+Dichos modelos fueron puestos a prueba utilizando métricas de rendimiento como el error cuadrático medio y coeficiente de determinación, Tras ello se escogió el Árbol de Regresión como el algoritmo optimo ya que funciona como un tipo de modelo de Aprendizaje Supervisado (SML) diseñado para predecir variables numéricas continuas mediante la división de datos en subconjuntos basados en criterios específicos y se justifica por la capacidad que tiene para manejar relaciones lineales y no lineales complejas entre las variables de la red ya que su bajo tiempo de entrenamiento es aprox 0.53 segundos y su eficiencia en la inferencia alcanza una velocidad de predicción de 1.300.000 observaciones por segundo.</td>
+                    <td>La técnica ML-SOHOT alcanzó una mejora promedio en el desempeño del Handover del 96% en comparación con algoritmos tradicionales, Los hallazgos muestran una reducción drástica de la probabilidad de falla (HOF) a un 0.16% y del efecto Ping-Pong a un 1.79%. Se optimizó el tiempo de interrupción del servicio (HIT) a 1.8 ms y de la latencia de traspaso (HOL) a 3.6 ms o que supera en gran medida a los métodos competitivos evaluados.</td>
+                    <td>La precisión del modelo presenta una dependencia crítica de la calidad de los datos de entrada, por lo que cualquier ruido o inexactitud en las métricas de señal o velocidad puede impactar negativamente el rendimiento del traspaso. Aunque el modelo es eficiente, se reconoce que la sobrecarga computacional podría incrementarse en escenarios urbanos ultra-densos con usuarios a velocidades extremas que requieran procesos de traspaso muy frecuentes. Finalmente, el estudio señala como limitación el alcance de los escenarios evaluados, sugiriendo la necesidad de futuras investigaciones en topologías de red más variadas y velocidades de movilidad aún mayores, como las de trenes de alta velocidad.</td>
+                    <td>El del modelo Árbol de Regresión (RT) facilito la gestión de movilidad inteligente en redes B5G ya que supero las capacidades de los métodos de optimización tradicionales. 
+El ajuste dinámico y preciso del Tiempo de Tiro basado en múltiples parámetros del usuario es importante para eliminar errores y garantizar la continuidad del servicio en aplicaciones sensibles a la latencia.
+Esta técnica mejora la infraestructura de red y optimiza la experiencia del usuario hacia operaciones de red inteligentes.</td>
+                    <td>Este paper implementa métricas en redes B5G donde se validan datos cuantitativos (HIT, HOL, HOF) esenciales para optimiza la velocidad y eficiencia de la red, estos modelos refuerzan la importancia de utilizar modelos de baja complejidad computacional como el Árbol de Regresión (RT) el cual puede ser más implementado en distintas investigaciones futuras en temas como la optimización en tiempo real en capa física.</td>
+                </tr>
+                <tr>
+                    <td>Cluster-Based Machine Learning-Driven Routing for UAV Networks in 6G Environment</td>
+                    <td>Machine Learning</td>
+                    <td>Gradient Boosting</td>
+                    <td>Actualmente las redes 6G son utilizadas para soportar aplicaciones avanzadas, entre ellas las utilizadas en los Vehículos Aéreos no Tripulados (UAV) las cuales necesitan latencia ultra baja y conectividad masiva. Hoy en día los entornos urbanos de gran densidad presentan grandes desafíos debido a la interferencia de la señal y las condiciones de propagación heterogéneas que impactan la eficiencia de la red. 
+Las Redes Ad-hoc Voladoras (FANETs) enfrentan una inestabilidad por la movilidad de sus componentes y provoca cambios constantes en la topología, lo que dificulta la escalabilidad, Aquí se puede evidenciar que los métodos tradicionales de enrutamiento fallan al no adaptarse dinámicamente y no aprovechan los datos de movilidad disponibles. Dicho eso se buscar diseñar un sistema que gestione eficientemente los Clusters Heads (CHs) que son los nodos responsables de administrar la comunicación dentro y fuera de sus grupos para reducir el sobrecosto en la comunicación y ayudan a mejorar la confiabilidad de la red.</td>
+                    <td>El proceso se da mediante una evaluación en el emulador Mininet-WiFi, el cual actúa como un emulador que ejecutar pilas de red reales de Linux y protocolos sin hacer modificaciones, esto permite capturar efectos prácticos como la acumulación temporal de paquetes de datos en la memoria de un nodo o también llamado colas, enrutamientos e interferencias en un entorno controlable.
+La arquitectura compara una topología centralizada para redes 5G la cual está conectada a un servidor a través de una función de plano de usuario (UPF), en contra de una topología distribuida para redes 6G que incorpora un módulo de Función de Análisis de Datos de Red (NWDAF) para gestionar la inteligencia del servicio. Esto sirve para recolectar datos de posición histórica de los UAVs mediante una simulación anticipada para predecir coordenadas futuras mediante el modelo XGBoost.
+El método del Codo y el método del Punto de Rodilla son implementados para identificar de forma matemática el número óptimo de clústeres ya que detecta el punto de máxima curvatura y para realizar la selección técnica de los Clusters Heads (CHs) se define un problema de Programación Lineal Entera Mixta (MILP) con el fin de buscar minimizar distancias y maximizar la potencia de señal, con esto se soluciona la función de puntuación heurística que se encarga de priorizar los nodos con mayor indicador de fuerza de señal recibida (RSSI) y menor distancia euclidiana promedio.</td>
+                    <td>El uso de IA en esta investigación se da mediante el algoritmo de Machine Learning XGBoost (Extreme Gradient Boosting), modelo de regresión para predecir las coordenadas finales de la estación móvil aérea basada en sus patrones de movilidad previos, se configura utilizando una función de pérdida de error cuadrático y Error Cuadrático Medio para asegurar su precisión, se establece una profundidad máxima de 6 niveles en los árboles de decisión y una tasa de aprendizaje de 0.1. Esto permite que la red pueda anticipar cambios topológicos y pueda optimizar la formación de clústeres y la selección de CHs de manera proactiva antes de que ocurran variaciones físicas en la red. 
+El sistema utiliza IA para realizar un auto organización distribuido donde la toma de decisiones pueda adaptarse dinámicamente a la demanda de tráfico y la movilidad, Así  elimina la dependencia de infraestructuras centralizadas y crea una fortaleza en entornos descentralizados de 6G.</td>
+                    <td>En la topología 6G el retardo promedio se redujo en un 16.3%, conjuntamente alcanzo una reducción drástica del jitter del 51% en escenarios descentralizados, lo que garantiza una estabilidad para aplicaciones críticas.
+El Throughput mejoró en un 15.5% en la topología 6G y la correcta selección de CHs basada en proximidad y señal pudo eliminar el cuello de botella y mejoró la eficiencia del balanceo de carga.</td>
+                    <td>Se encontró una limitación en el uso de Mininet-WiFi el cual a pesar de que ejecuta protocolos reales no alcanza la fidelidad de la capa física inalámbrica de simuladores mencionados como ns-3, También hay una falta de validación física debido a los costos y riesgos de seguridad en el vuelo de UAVs.</td>
+                    <td>La integración de XGBoost y la optimización de clústeres son importantes para cumplir los requisitos de baja latencia y alta confiabilidad de 6G donde se destaca que las topologías descentralizadas ofrecen mayores ventajas para la gestión de recursos y el balanceo de carga en redes aéreas autónomas.</td>
+                    <td>Esta investigación proporciona conocimiento técnico sobre enrutamiento inteligente y optimización de recursos, El uso de emuladores como Mininet-WiFi pueden sentar bases para nuevas investigaciones y simulaciones en redes inalámbricas de próxima generación.</td>
+                </tr>
+                <tr>
+                    <td>Machine Learning Physical-Layer Receivers for DFT-s-OFDM</td>
+                    <td>Machine Learning</td>
+                    <td>Neuronal Networks</td>
+                    <td>Las bandas de ondas milimétricas tienen desafíos complejos para producir niveles de potencia de transmisión que sean lo suficientemente altos en la calidad de señal debido a que las onda OFDM sufren de una alta relación de potencia pico a promedio (PAPR) que degrada la eficiencia de los amplificadores de potencia.
+El estándar 5G utiliza la variante DFT-s-OFDM para reducir dicha PAPR y mejorar la cobertura pero la señal sigue siendo vulnerable a la distorsión no lineal y al ruido de fase del oscilador cuando los amplificadores operan cerca de la saturación para maximizar la potencia, Ante esto los receptores basados en ecualizadores lineales resultan ser inoperantes para detectar señales con niveles de distorsión elevados y limita el alcance en redes de próxima generación.</td>
+                    <td>La metodología empieza con el uso de la plataforma 5G Toolbox de MATLAB, la cual es una plataforma para el diseño, simulación y verificación de sistemas de comunicaciones compatibles con los estándares de la 3GPP. Con esta herramienta se simuló un canal compartido físico de subida (PUSCH) bajo condiciones realistas de la banda de 28 GHz.
+Para la generación del Dataset se recolectaron 630.000 TTIs (Intervalos de Tiempo de Transmisión) para el entrenamiento y 170.000 TTIs para la validación de cada esquema de modulación (QPSK, 64-QAM, 256-QAM).
+Se utilizaron canales de Línea de Retardo Derivado (TDL) que representan perfiles de retardo y potencia en entornos multipato, donde la señal rebota en obstáculos antes de llegar al receptor. Los modelos TDL-B, C y D se usaron para entrenamiento y los modelos TDL-A y E para la validación.
+El sistema aplica redes neuronales convolucionales con una arquitectura ResNet (Red Residual) la cual permite entrenar redes profundas mediante el uso de "conexiones de salto" para evitar la degradación del aprendizaje y se diseñaron dos variantes:
+• light DFT-s CNN: Solo posee capas aprendidas tras la Transformación Discreta Inversa de Fourier. 
+• full DFT-s CNN: Integra capas entrenables antes y después de la Transformación Discreta Inversa de Fourier.</td>
+                    <td>Se implementaron Redes Neuronales Convolucionales en una estructura de Red Residual (ResNet), la cual utilizo conexiones de salto para facilitar el entrenamiento de redes profundas. 
+Se proponen dos variantes: Light DFT-s CNN y Full DFT-s CNN.
+La Transformada Discreta Inversa de Fourier transforma los símbolos del dominio de la frecuencia al dominio del tiempo donde el receptor full realiza 64 Transformadas (IDFTs) en paralelo dentro de la red para evitar cuellos de botella con ello las capas pre IDFT facilitan la ecualización contra la Interferencia entre portadoras mientras que las capas post IDFT mitigan los efectos no lineales del amplificador.</td>
+                    <td>1. El receptor full DFT-s CNN tuvo el mejor desempeño, superando al Error Cuadrático Medio Mínimo Lineal (LMMSE) convencional en modulaciones de alto orden como 256-QAM.
+2. Se obtuvo una cobertura de enlace de subida de hasta el 22.4% con el receptor aprendido bajo modulación QPSK.
+3. Es importante tener capas en ambos lados de la IDFT ya que las pre toleran la selectividad del canal y las post la distorsión de RF.</td>
+                    <td>La investigación tiene un limitante en la precisión del modelo ya que depende de que los deterioros dominantes estén adecuadamente representados en los datos de entrenamiento y la investigación se limitó a esquemas de modulación de hasta 256 QAM.</td>
+                    <td>Integrar receptores basados en redes neuronales convolucionales ayuda a mitigar imperfecciones en escenarios mmWave de sistemas de próxima generación.
+El uso de capas permite a los transmisores operar con mayor eficiencia y admiten señales distorsionadas sin perder confiabilidad en el enlace.
+La arquitectura combina capas convolucionales con transformadas normales del receptor, estableciendo un camino hacia interfaces nuevas que sean implementadas mediante IA.</td>
+                    <td>Integrar receptores basados en redes neuronales convolucionales ayuda a mitigar imperfecciones en escenarios mmWave de sistemas de próxima generación.
+El uso de capas permite a los transmisores operar con mayor eficiencia y admiten señales distorsionadas sin perder confiabilidad en el enlace.
+La arquitectura combina capas convolucionales con transformadas normales del receptor, estableciendo un camino hacia interfaces nuevas que sean implementadas mediante IA.</td>
+                </tr>
+                <tr>
+                    <td>Estimating Base Station Traffic and Throughput Using Machine Learning Based on Hourly Key Performance Indicator (KPI) Network Analysis</td>
+                    <td>Machine Learning</td>
+                    <td>Multiple</td>
+                    <td>La complejidad de las redes celulares modernas y el creciente aumento masivo en la demanda de servicios de datos dificultan la gestión eficiente de los recursos donde los métodos tradicionales de predicción basados en análisis estadísticos son ineficientes para capturar fluctuaciones dinámicas, patrones de uso y variaciones en las condiciones de la red, Por ello surge la necesidad de desarrollar métodos de predicción que sean confiables y permitan tomar decisiones para evitar la congestión y la degradación del servicio con el fin de optimizar el rendimiento de la red y la experiencia del usuario.</td>
+                    <td>Se empleó un enfoque de análisis de red basado en datos reales recolectados durante cuatro meses en 23 celdas de un sitio  específico en Indonesia, Para estructurar de manera ordenada los datos se seleccionaron 16 KPIs definidos por la 3GPP que afectan el rendimiento de la red distribuidos en categorías como lo son: accesibilidad, disponibilidad y movilidad.
+El preprocesamiento de datos paso por etapas de limpieza, normalización y estandarización para construir un dataset de 45.243 filas para poder continuar con el procesamiento de los datos, Para la validación del modelo se empleó una técnica de validación cruzada de 10 pliegues la cual divide los datos en un 70% para entrenamiento, 10% para validaciones y 20% para pruebas donde la precisión de predicción se evaluó mediante el error cuadrático medio y el coeficiente de determinación.</td>
+                    <td>El uso de la IA fue aplicada para modelar las relaciones no lineales y encontrar patrones ocultos entre los 16 KPIs analizados (RSRP, SINR, RSSI) y variables como tráfico y throughput.
+Para la investigación fueron puestos a prueba 3 tipos de modelos de regresión:
+K-Nearest Neighbors (KNN): Este algoritmo calculo la distancia euclidiana entre una nueva muestra y todos los puntos del conjunto de entrenamiento con el fin de promediar los valores de los K vecinos más cercanos.
+Random Forest (RF): Fue aplicado como un método de ensemble learning que entrena múltiples árboles de decisión independientes con subconjuntos aleatorios de datos y promedia sus resultados para reducir la varianza y el ruido.
+XGBoost (Extreme Gradient Boosting): Este algoritmo entrena cada árbol nuevo utilizado para corregir los errores residuales de las iteraciones anteriores incorporando técnicas para penalizar árboles complejos y prevenir el overfitting.
+Por ultimo se utilizó una técnica de búsqueda de cuadrícula combinada con validación cruzada de 10 pliegues para determinar los valores ideales de los parámetros del modelo que no se actualizan durante el entrenamiento</td>
+                    <td>XGBoost demostró el mejor desempeño con un coeficiente de determinación de 0.976 y un error cuadrático medio de 0.485 para la predicción de tráfico, y un coeficiente de determinación de 0.944 con un error cuadrático de 12.382 para el throughput.
+El modelo KNN mostró una precisión razonable dando como resultados un coeficiente de determinación de 0.962 en tráfico mientras que Random Forest fue el menos preciso para el throughput con un coeficiente de determinación de 0.699.</td>
+                    <td>El análisis se limita a los KPIS de un corto periodo de tiempo de un solo operador de Indonesia, se optó por no utilizar la geo localización para evitar sesgos hacia configuraciones específicas de este sitio.
+Otra limitante es que el modelo depende de la disponibilidad de datos de red ya que si existe una falta de información influye directamente en la exactitud del análisis.</td>
+                    <td>Algoritmos de Machine Learning como XGBoost pueden ser muy efectivos para predecir el tráfico y el throughput en estaciones base, Es mejor que métodos tradicionales ya que uno de sus principales aciertos es que permite a los operadores optimizar la asignación de recursos con el fin de reducir la congestión y mejorar la experiencia del usuario.</td>
+                    <td>Esta investigación proporciona evidencia sobre la eficiencia de diferentes algoritmos de Machine Learning en redes móviles aportando métricas de análisis como Coeficiente de determinación y Error cuadrático medio, También se respeta estándares de métricas establecidos por la 3GPP lo cual es fundamental para identificar tendencias y patrones metodológicos en la integración de la IA en redes de próxima generación.</td>
+                </tr>
+                <tr>
+                    <td>A Kalman Filter Based Low Complexity Throughput Prediction Algorithm for 5G Cellular Networks</td>
+                    <td>Machine Learning</td>
+                    <td>Regresion Lineal</td>
+                    <td>La inestabilidad en los enlaces 5G mmWave es susceptible a fluctuaciones debido a su dependencia de la línea de vista. Las soluciones existentes basadas en DL presentan una complejidad computacional que genera retardos en la inferencia.
+Mientras un modelo de DL puede tardar 22 ms en un smartphone, el tiempo de coherencia del canal a 28 GHz para un usuario en movimiento es de solo 0.2 ms lo que invalida la predicción, La alta demanda de los modelos complejos es prohibitiva para dispositivos móviles con baterías limitadas que requieren muchos reentrenamientos.</td>
+                    <td>Para la metodología de esta práctica se desarrolló un algoritmo donde se utilizaron siete conjuntos de datos públicos de 5G recolectados en diversas condiciones de movilidad como lo son: estático, caminando y conduciendo en algunas ciudades como Minneapolis y Ann Arbor. 
+En el pre procesamiento se aplicó un filtro de media móvil con un tamaño de ventana para eliminar el ruido de medición de los datos asumiendo el resultado como el valor del throughput. Fue realizado un análisis estadístico para determinar los parámetros con mayor correlación con el throughput, los cuales son: RSRP y SINR.
+Los datos para el flujo de trabajo fueron divididos en un 80% para entrenamiento para optimizar los coeficientes mediante mínimos cuadrados mientras el que 20% restante fue elegido para pruebas de desempeño.</td>
+                    <td>Se utilizó el Algoritmo KFTP el cual se basa en un sistema de predicción y corrección de baja complejidad. Se utilizó una Regresión Lineal Múltiple para modelar el throughput futuro como una función lineal de las características de red seleccionadas que en este caso son RSRP, SINR y throughput presente. Esta elección minimiza el riesgo de overfitting y reduce el tiempo de entrenamiento.
+El algoritmo también emplea un Filtro de Kalman que toma la varianza del error de predicción y del error de medición para obtener una estimación óptima del estado futuro. Este proceso requiere de ocho multiplicaciones y siete adiciones por cada predicción lo que permite una ejecución muy rápida y eficiente en términos energéticos.</td>
+                    <td>El algoritmo KFTP entregó puntuaciones del coeficiente de determinación superiores a 0.8 y mantuvo un Error absoluto medio inferior al 15% para ventanas de predicción de 9 segundos.
+El algoritmo propuesto fue superior a modelos de como XGBoost, LSTM y Random Forest ya que entrego resultados más precisos en un tiempo más corto para inferencia y reentrenamiento.
+El uso de KFTP junto a algoritmos de control predictivo hizo que aumente la calidad de la experiencia del usuario en aplicaciones de video streaming y transmisiones en vivo al reducir el tiempo de rebuffering, fluctuaciones y latencia.
+El desempeño del algoritmo mejora cuando el entorno es más ruidoso, lo que demuestra ser muy confiable y superior que otros modelos de aprendizaje tradicionales.</td>
+                    <td>El algoritmo tiene una degradación cuando se realizan predicciones con tiempos significativamente largos. También el modelo asume que el ruido de medición es aditivo y sigue una distribución Gaussiana de media cero lo que no podría cumplirse en todas las configuraciones de red.</td>
+                    <td>Se concluye que el KFTP es una alternativa de baja complejidad muy efectivo para predecir el throughput en redes 5G mmWave, Supera limitaciones de latencia y consumo de energía y el éxito del mismo radica en su capacidad para anular el efecto del ruido de medición y modelar la dinámica del canal de forma lineal corregida donde su eficiencia lo hace ideal para dispositivos móviles</td>
+                    <td>Esta investigación aporta una base para constatar la eficiencia de algoritmos lineales corregidos como el Kalman en términos de latencia y precisión, estos algoritmos permiten fomentar investigaciones futuras debido a su precisión y por su complejidad computacional que es crítica para redes móviles avanzadas.</td>
+                </tr>
+                <tr>
+                    <td>CSI-RSRP-Based Unnecessary Handover Mitigation Through Linear Regression in Dynamic 5G NR Environments</td>
+                    <td>Machine Learning</td>
+                    <td>Regresion Lineal</td>
+                    <td>El soporte del Network Slicing en la interfaz de sistemas 5G exige algoritmos de optimización que trabajen en tiempo real, Por ello se necesita garantizar el aislamiento del rendimiento entre slices con el fin de asegurar equidad y eficiencia, El problema se agrava en la RAN por las condiciones del canal inalámbrico de ondas mmWave. Los métodos tradicionales presentan una complejidad exponencial en función del número de slices, lo que impide una redistribución oportuna de recursos ante cambios en milisegundos por ello surge la necesidad de aproximaciones ligeras basadas en IA que sigan la evolución del canal sin sobrecargar el sistema.</td>
+                    <td>Se implementaron simulaciones computacionales compatibles con los estándares de la 3GPP para modelar la capacidad variable del canal, integrando factores como la propagación mmWave, antenas de haz directivo, Random Direction Mobility y bloqueo por el cuerpo humano. 
+El marco de la experimentación modeló una estación base con una capacidad de 2000 Mbps, la arquitectura se diseñó bajo el ITU-T Y.3172 que organiza la solución en un ML pipeline de nodos lógicos:
+1. fuente (SRC)
+2. recolector (C)
+3. preprocesador (PP)
+4. modelo (M)
+5. política (P)
+6. distribuidor (D)
+7. sumidero (SINK)
+Fueron evaluaron dos regímenes de aprendizaje: online, con entrenamiento de datos en vivo y detección constante de precisión y offline, utilizando un dataset de hasta 100,000 muestras generado mediante un algoritmo de solución exacta basado en métodos de lagrange que son utilizados para obtener la solución exacta al problema de optimización de recursos la cual sirve como el estándar de referencia para entrenar y evaluar modelos de IA.</td>
+                    <td>La investigación propuesta aplicó cuatro técnicas de aprendizaje supervisado para la distribución de recursos:
+1. Regresión lineal y Polinómica grados 2 y 4: Estos algoritmos fueron implementados para predecir las capacidades de los slices en base al número de usuarios activos.
+2. Random Forest: Utilizando arboles de decisiones configurado con 10 y 50 estimadores para manejar la regresión promediando predicciones individuales.
+3. Redes Neuronales Artificiales: Utilizando un modelo secuencial con dos capas ocultas activadas por funciones RELU de 64 y 128 neuronas.
+Los modelos aplicados fueron entrenados para minimizar el error cuadrático medio entre la asignación y la solución exacta. El nodo de política del marco ITU-T actúa como supervisor en tiempo real para ajustar las predicciones.</td>
+                    <td>1. Las regresiones polinómicas tuvieron un 5 a 6 órdenes de magnitud en tiempo de ejecución.
+2. Las regresiones de grado 2 y 4 fueron un 20% y 40% más precisas que las redes neuronales artificiales y random forest ante variaciones en la carga.
+3. Las regresiones lograron tiempos de entre 10^-5 y 10^-4 segundos, es decir que permite reasignaciones casi instantáneas.</td>
+                    <td>Los algoritmos de IA aplicados son propensos a los acuerdo de nivel de servicio (SLA) bajo una carga alta y canales inestables, lo que hace obligatorio el uso de un sistema de control de cumplimiento en el pipeline.
+El modelo Random Forest puede tener mejoras con datasets más extensos donde su complejidad y tiempo de entrenamiento son mayores. Un limitante son los canales mmWave y deja como vacío el análisis en cambios de la capacidad del total de celdas.</td>
+                    <td>La arquitectura ITU-T es una solución eficiente para el eficiente funcionamiento del RAN 5G, Se concluye que el ajuste dinámico garantiza el aislamiento de los fragmentos y la equidad donde el uso de regresiones polinómicas se considera la mejor opción para implementaciones debido a su balance de velocidad, precisión y bajas muestras.</td>
+                    <td>Esta implementación aporta un análisis técnico del marco ITU-T Y.3172, la cual es una arquitectura fundamental para IA en telecomunicaciones. Se realiza una comparativa entre distintas técnicas de IA, utilizando Machine Learning con regresiones, Deep Learning con redes neuronales artificiales y Random Forest, lo que aporta métricas de complejidad y gestión de recursos ya que también abordan el network slicing en la capa física la cual es una de las aplicaciones prioritarias hoy en día.</td>
+                </tr>
+                <tr>
+                    <td>Performance Assessment of an ITU-T Compliant Machine Learning Enhancements for 5G RAN Network Slicing</td>
+                    <td>Machine Learning</td>
+                    <td>Multiple</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Machine Learning Codebook Design for Initial Access and CSI Type-II Feedback in Sub-6-GHz 5G NR</td>
+                    <td>Machine Learning</td>
+                    <td>Neuronal Networks</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Distributed Machine-Learning for Early HARQ Feedback Prediction in Cloud RANs</td>
+                    <td>Machine Learning</td>
+                    <td>Hibrido</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Throughput Prediction Using Machine Learning in LTE and 5G Networks</td>
+                    <td>Machine Learning</td>
+                    <td>Multiple</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Swift HARQ Based on Machine Learning for Latency Minimization in URLLC</td>
+                    <td>Machine Learning</td>
+                    <td>Multiple</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Intelligent Index Classification Method Based on Machine Learning for Detection of Reference Signal in 5G Networks</td>
+                    <td>Machine Learning</td>
+                    <td>Signal Index Classification</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Adaptive Physical Layer Authentication Using Machine Learning With Antenna Diversity</td>
+                    <td>Machine Learning</td>
+                    <td>Support Vector Machine</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Smoothing-Aided Support Vector Machine Based Nonstationary Video Traffic Prediction Towards B5G Networks</td>
+                    <td>Machine Learning</td>
+                    <td>Support Vector Machine</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Machine Learning Inspired Codeword Selection For Dual Connectivity in 5G User-Centric Ultra-Dense Networks</td>
+                    <td>Machine Learning</td>
+                    <td>Support Vector Machine</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Lightweight Machine Learning for Efficient Frequency-Offset-Aware Demodulation</td>
+                    <td>Machine Learning</td>
+                    <td>Support Vector Machine</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.querySelectorAll('.filter-input').forEach((input, index) => {
+            input.addEventListener('keyup', function() {
+                const table = document.getElementById('papersTable');
+                const rows = table.querySelectorAll('tbody tr');
+                const filters = Array.from(document.querySelectorAll('.filter-input')).map(i => i.value.toLowerCase());
+
+                rows.forEach(row => {
+                    const cells = row.querySelectorAll('td');
+                    // Verifica si el texto de cada celda contiene el valor del filtro correspondiente
+                    const isVisible = filters.every((filter, i) => {
+                        return filter === "" || (cells[i] && cells[i].textContent.toLowerCase().includes(filter));
+                    });
+                    row.style.display = isVisible ? '' : 'none';
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
