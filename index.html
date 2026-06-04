@@ -392,7 +392,7 @@ url:
                 id:4,
                 category:"Machine Learning",
                 title:"ML-Based Self-Optimization Handover Technique for Beyond 5G Mobile Network.",
-                aiTech:"Decision Trees",
+                aiTech:"Multiple",
                 problem:
     "Las nuevas tecnologías como las ondas milimétricas y las redes ultra-densas en sistemas B5G generan importantes desafíos de movilidad debido a las pequeñas áreas de cobertura y al despliegue masivo de small cells. La densificación de la red y el incremento de dispositivos aumentan la complejidad del proceso de handover, elevando la ocurrencia de eventos no deseados como fallas de conexión, disparos tardíos y el efecto Ping-Pong. Los mecanismos tradicionales de handover resultan ineficientes para redes de nueva generación que requieren optimización rápida y autónoma para soportar velocidades de movilidad ultra-altas y garantizar servicios continuos de ultra-baja latencia.",
 
@@ -423,7 +423,7 @@ url:
                 id:5,
                 category:"Machine Learning",
                 title:"Cluster-Based Machine Learning-Driven Routing for UAV Networks in 6G Environment.",
-                aiTech:"Random Forest",
+                aiTech:"XGBoost",
                 problem:
     "Las redes 6G orientadas a soportar aplicaciones avanzadas como Vehículos Aéreos no Tripulados (UAV) requieren ultra baja latencia y conectividad masiva. Sin embargo, los entornos urbanos densos generan grandes desafíos debido a la interferencia de señal y a las condiciones de propagación heterogéneas que afectan la eficiencia de la red. Las Redes Ad-hoc Voladoras (FANETs) presentan inestabilidad debido a la movilidad constante de sus nodos, provocando cambios continuos en la topología y dificultando la escalabilidad. Los métodos tradicionales de enrutamiento no logran adaptarse dinámicamente ni aprovechan adecuadamente los datos de movilidad disponibles. Por ello surge la necesidad de diseñar un sistema eficiente para la gestión de Cluster Heads (CHs), responsables de administrar la comunicación intra e inter clúster, con el fin de reducir sobrecostos de comunicación y mejorar la confiabilidad de la red.",
 
@@ -637,20 +637,32 @@ url:
             {
                 id:12,
                 category:"Machine Learning",
-                title:"",
-                aiTech:"",
-                problem:"",
-                methodology:"",
-                aiUsage:"",
-                findings:"",
-                conclusions:"",
-                references:`
-    [1] Autor, A. (2025).
-    Titulo del paper.
-    Revista o Conferencia.
-    https://doi.org/xxxxx
+                title:"Distributed Machine-Learning for Early HARQ Feedback Prediction in Cloud RANs",
+                aiTech:"Hibrido",
+                problem:
+    "Actualmente existe una necesidad crítica de cumplir con los exigentes requisitos de latencia de hasta 100 µs de los servicios URLLC en las redes 5G y 6G. Los mecanismos tradicionales de retransmisión HARQ resultan ineficientes por su naturaleza reactiva, puesto que introducen retardos significativos al requerir una espera de confirmación (ACK/NACK) tras cada transmisión. Este problema se agrava en las arquitecturas C-RAN donde la latencia de fronthaul entre los cabezales de radio remotos y la BBU puede alcanzar los 250 µs. Además al operar en bandas de 100 GHz la comunicación depende de una línea de vista despejada, lo que lo vuelve altamente vulnerable a bloqueos físicos que degradan la señal. Por ello resulta importante predecir el éxito de la decodificación de manera anticipada apoyándose en canales de retroalimentación de capacidad limitada de 2 a 6 bits.",
+
+methodology:
+    "El estudio recurrió a una implementación de simulaciones de nivel de enlace en la banda de 100 GHz, utilizando un modelo de canal CDL filtrado espacialmente para integrar los efectos de la formación de haces. La base del escenario consistió en un enlace de subida donde un equipo de usuario transmite un paquete de datos recibido de forma simultánea por dos RRH, que opera bajo un protocolo HARQ de redundancia de incremento de hasta cuatro versiones. Durante el proceso los cabezales de radio ejecutan un procesamiento parcial de la señal y envían una retroalimentación local cuantizada hacia el usuario. Con esto el equipo transmisor aplica una regla de combinación para determinar si interrumpe el envío o si decide transmitir más redundancia donde el desempeño del sistema se evaluó a través del throughput y la latencia máxima en dos escenarios de validación: un escenario ideal sin bloqueos y otro escenario de bloqueo simple.",
+
+aiUsage:
+    "Se introdujo una arquitectura de aprendizaje profundo DA2SGMM, la cual fue entrenada de extremo a extremo, donde su funcionamiento se basa en tres etapas secuenciales. En primer lugar, El uso de autoencoders duales donde cada RRH emplea un codificador destinado a reducir la dimensionalidad de características de entrada específicas como la SNR y las métricas de subcódigos derivadas de la decodificación parcial. En segundo lugar, se realizó una clasificación distribuida mediante un clasificador local situado en cada RRH el cual procesa estas características comprimidas junto con la SNR para generar una predicción de la viabilidad de decodificar el paquete. Durante la fase de combinación, los resultados fueron transmitidos a través de un canal con restricción de bits hacia un clasificador central alojado en el equipo del usuario, donde se integró todas las predicciones para emitir la decisión definitiva de ACK o NACK. Para optimizar el modelo se utilizó el algoritmo Adam para minimizar la función de pérdida conjunta que evalúa la reconstrucción del autoencoder y la precisión de la clasificación mediante entropía cruzada y se agregó una técnica de submuestreo para equilibrar las clases y una cuantificación correcta del entrenamiento con el fin de garantizar que el sistema sea robusto al operar en canales de tasa limitada.",
+
+findings:
+    "Se demostró que la arquitectura DA2SGMM supera significativamente a los métodos tradicionales y a los métodos basados en regresión logística ya que operar con una retroalimentación de apenas 4 bits, el modelo alcanzó un promedio en el throughput que superó un 200 % a la mejor alternativa adaptada en escenarios de bloqueo simple. Tambien se logró reducir la latencia máxima de transmisión en más del 72.4 % en comparación con protocolos HARQ y se realizó una validación que esta capacidad de 4 bits resulta suficiente para capturar la información del canal, La IA consiguió mantener más del 75 % del rendimiento de datos original incluso al operar en escenarios ideales libres de bloqueos.",
+
+conclusions:
+    "En conclusión el uso de técnicas de aprendizaje automático distribuido a través de arquitecturas de autoencoders duales constituye una solución eficaz para mitigar el impacto de los bloqueos y la latencia en redes sub-THz. Se destaca que el ajuste dinámico mediante Early HARQ facilita una gestión de recursos inteligente dentro de entornos C-RAN superando las limitaciones de los métodos reactivos. Recalcar que el esquema DA2SGMM establece una importante base para la optimización de la capa física en las arquitecturas 5G y 6G dando un soporte necesario para los servicios de latencia ultrabaja.",
+
+references:`
+    [1] Göktepe, B., Hellge, C., Schierl, T., & Stanczak, S. (2024).
+    Distributed machine-learning for early HARQ feedback prediction in Cloud RANs.
+    IEEE Transactions on Wireless Communications, 23(1), 31–44.
+    https://doi.org/10.1109/TWC.2023.3275296
 `,
-                url:""
+
+url:
+    "https://ieeexplore.ieee.org/document/10128960"
             },
 
             // =========================================
@@ -659,20 +671,32 @@ url:
             {
                 id:13,
                 category:"Machine Learning",
-                title:"",
-                aiTech:"",
-                problem:"",
-                methodology:"",
-                aiUsage:"",
-                findings:"",
-                conclusions:"",
-                references:`
-    [1] Autor, A. (2025).
-    Titulo del paper.
-    Revista o Conferencia.
-    https://doi.org/xxxxx
+                title:"Throughput Prediction Using Machine Learning in LTE and 5G Networks.",
+                aiTech:"Multiple",
+                problem:
+    "La automatización industrial y los vehículos autónomos exigen el cumplimiento riguroso de acuerdos de nivel de servicio (SLA) mediante un monitoreo continuo. Aunque el throughput es la métrica más importante para medir la calidad por parte del usuario, su predicción puede ser compleja dada la naturaleza dinámica del entorno. Esta dificultad se presenta significativamente en escenarios de movilidad vehicular (V2X) y bajo esquemas de network slicing. El estado del arte carece de versatilidad ya que se basa en conjuntos de datos limitados a un solo entorno y omite el análisis de tecnologías clave como el carrier aggregation y los sistemas MIMO.",
+
+methodology:
+    "El proceso metodológico empezó mediante una evaluación técnica que se fundamentó en la recolección empírica de datos bajo diversas condiciones operativas, abarcando conducción en áreas urbanas, suburbanas y rurales, Se realizaron pruebas estáticas en entornos con más de 5000 personas. Se integró la generación de tráfico activo mediante una herramienta basada en el protocolo TWAMP (Two-Way Active Measurement Protocol) capaz de emitir ráfagas de paquetes UDP durante 1500 ms para medir el throughput máximo en los enlaces de uplink o downlink. De igual forma, se realizó una recolección pasiva de características utilizando la aplicación TEMS Pocket que permitió registrar métricas de las capas inferiores con resolución de milisegundos sin introducir carga en la red. Para finalizar hubo un procesamiento de ingeniería de características el cual consistió en estructurar vectores a partir de dos ventanas de medición de 500ms operando de manera inactiva para mitigar interferencias, El dataset consolidado se dividió en 70 % para entrenamiento, 10 % para validación y 20 % para pruebas.",
+
+aiUsage:
+    "Para predecir el throughput se aplicó un enfoque de aprendizaje supervisado orientado a tareas de regresión donde se evaluaron y compararon técnicamente cuatro modelos principales: 1. Random Forest: Modelo utilizado reducir la varianza al promediar los resultados de múltiples árboles de decisión independientes. 2. XGBoost: Sistema de refuerzo de gradiente secuencial enfocado en minimizar la función de costo mediante la creación de árboles que corrigen progresivamente los errores de sus predecesores. 3. Redes Neuronales Artificiales: Mediante un perceptrón multicapa (MLP) el cual es un tipo de red neuronal artificial compuesta por al menos tres capas de neuronas utilizado para resolver problemas complejos de clasificación y regresión mediante el aprendizaje de relaciones no lineales, en este caso es configurado con capas ocultas y funciones de activación ReLU, resultando adecuado para el procesamiento de datos tabulares. 4. Support Vector Regression: Modelo seleccionado por su capacidad para manejar casos atípicos ya que define un margen de error aceptable en lugar de basarse en una minimización iterativa pura. La optimización de los hiperparámetros de estos algoritmos se ejecutó a través de una grid search acoplada a una validación cruzada de 10 pliegues. Se evaluo el impacto de las variables mediante la técnica de SHAP la cual identificó que el parámetro de reducción de energía de los datos de usuario y la métrica SINR son los factores predictivos más influyentes en el sistema.",
+
+findings:
+    "Los revelaron hallazgos importantes en base a la eficacia de los modelos predictivos: 1. Precisión en redes LTE: El algoritmo XGBoost alcanzó el mejor rendimiento ya que registro un coeficiente de determinación del 93 % y un error cuadrático medio de 0.06. 2. Desempeño en arquitecturas 5G: Al desplegar el modelo en redes 5G no autónomas el sistema logró mantener una gran capacidad predictiva, obteniendo un coeficiente de determinación del 84 % y un error cuadrático medio de 0.17. 3. Monitoreo: Se demostró que las características de red recolectadas durante el modo inactivo son suficientes para predecir con fidelidad el comportamiento en el modo conectado, lo que permite supervisar el network slices de manera continua sin generar carga adicional ni degradar la calidad del servicio para el usuario final.",
+
+conclusions:
+    "Se concluye que la predicción del throughput mediante técnicas de aprendizaje automático es una herramienta precisa para el benchmarking del network slices, Se establece que integrar métricas de las capas inferiores combinado con una ingeniería de características basada en ventanas de tiempo ayuda a los operadores para validar los acuerdos de nivel de servicio (SLA) eficientemente y se destaca que el uso de algoritmos como XGBoost y el perceptrón multicapa (MLP) son idóneos por su implementación en dispositivos móviles con el objetivo de optimizar el tráfico en servicios críticos.",
+
+references:`
+    [1] Minovski, D., Ögren, N., Mitra, K., & Åhlund, C. (2023).
+    Throughput prediction using machine learning in LTE and 5G networks.
+    IEEE Transactions on Mobile Computing, 22(3), 1825–1840.
+    https://doi.org/10.1109/TMC.2021.3099397
 `,
-                url:""
+
+url:
+    "https://ieeexplore.ieee.org/document/9495144"
             },
 
             // =========================================
@@ -681,20 +705,18 @@ url:
             {
                 id:14,
                 category:"Machine Learning",
-                title:"",
-                aiTech:"",
-                problem:"",
-                methodology:"",
-                aiUsage:"",
-                findings:"",
-                conclusions:"",
-                references:`
-    [1] Autor, A. (2025).
-    Titulo del paper.
-    Revista o Conferencia.
-    https://doi.org/xxxxx
-`,
-                url:""
+                title:"Swift HARQ Based on Machine Learning for Latency Minimization in URLLC.",
+                aiTech:"Support Vector Machine",
+                problem:"Las comunicaciones URLLC en redes 5G y futuras 6G requieren tiempos de entrega inferiores a 1 ms y una confiabilidad del 99.999%. El mecanismo HARQ tradicional introduce retardos debido al intercambio reactivo de ACK/NACK despues de cada transmision, generando cuellos de botella que afectan la latencia y el rendimiento en aplicaciones criticas. Surge asi la necesidad de implementar un protocolo capaz de predecir de forma temprana la decodificabilidad de los paquetes para reducir retransmisiones innecesarias y optimizar el uso del canal.",
+methodology:"La investigacion utilizo simulaciones en MATLAB bajo una arquitectura 3GPP 5G NR Release 15 con forma de onda MIMO CP-OFDM y ancho de banda de 20 MHz. Se implementaron perfiles de canal CDL-C para modelar desvanecimiento en frecuencias de hasta 100 GHz. Se emplearon mini-slots y espaciamientos entre subportadoras de 30 y 60 kHz para cumplir requisitos URLLC. El dataset fue generado y etiquetado mediante tareas de recepcion y verificacion de integridad de bits. El desempeno del sistema fue evaluado mediante curvas ROC y metricas AUC para analizar el balance entre falsos positivos y falsos negativos.",
+aiUsage:"Se aplico un enfoque de aprendizaje supervisado basado en Support Vector Machine (SVM) para predecir si un paquete podria ser decodificado dentro del numero maximo de retransmisiones permitidas. El modelo utilizo como caracteristicas la BER estimada mediante relacion de verosimilitud logaritmica y la CSI obtenida a partir de simbolos piloto usando estimacion de minimos cuadrados. El clasificador implemento kernel trick con un kernel polinomico y una estrategia One-Against-All combinada con winner-takes-all para clasificacion multiclase. Adicionalmente se aplico la tecnica SMOTE para balancear las clases generando muestras sinteticas de eventos minoritarios.",
+findings:"El esquema Swift HARQ redujo la latencia en mas del 50% frente al HARQ convencional. El clasificador SVM alcanzo una exactitud de hasta 0.93 y una metrica AUC de 0.998, superando modelos como regresion logistica y arboles de decision. En escenarios de baja SNR el sistema incremento el throughput en un 40% gracias al descarte temprano de paquetes no decodificables, optimizando asi la utilizacion del canal.",
+conclusions:"La integracion de IA en mecanismos HARQ permite una gestion mas inteligente y autonoma de los recursos de red en entornos URLLC. El modelo SVM demostro capacidad para anticipar el exito de transmision en canales complejos y reducir significativamente la latencia, consolidandose como una solucion eficiente para futuras interfaces de baja latencia en redes 6G.",
+references:`[1] Almarshed, S., Triantafyllopoulou, D., & Moessner, K. (2023).
+Swift HARQ based on machine learning for latency minimization in URLLC.
+IEEE Access, 11, 113422–113436.
+https://doi.org/10.1109/ACCESS.2023.3243438`,
+url:"https://ieeexplore.ieee.org/document/10040687"
             },
 
             // =========================================
@@ -703,20 +725,18 @@ url:
             {
                 id:15,
                 category:"Machine Learning",
-                title:"",
-                aiTech:"",
-                problem:"",
-                methodology:"",
-                aiUsage:"",
-                findings:"",
-                conclusions:"",
-                references:`
-    [1] Autor, A. (2025).
-    Titulo del paper.
-    Revista o Conferencia.
-    https://doi.org/xxxxx
-`,
-                url:""
+                title:"Intelligent Index Classification Method Based on Machine Learning for Detection of Reference Signal in 5G Networks",
+                aiTech:"Multiple",
+                problem:"La deteccion precisa de señales de referencia en redes 5G es fundamental para garantizar sincronizacion y adaptacion eficiente al canal. Los metodos tradicionales de blind detection basados en correlacion presentan limitaciones importantes debido a que requieren evaluar todos los indices candidatos y son vulnerables al ruido e interferencia, provocando errores de deteccion y baja eficiencia en escenarios dinamicos. Surge asi la necesidad de implementar modems inteligentes basados en Machine Learning capaces de mejorar la deteccion y mantener un comportamiento mas robusto y predecible.",
+methodology:"La investigacion implemento un entorno experimental basado en modems compatibles con 5G utilizando dispositivos USRP definidos por software, uno configurado como estacion base y otro como equipo de usuario. Se recolectaron 1.920.000 secuencias DMRS complejas de 144 elementos bajo 12 niveles de SNR y 8 indices distintos. El preprocesamiento aplico tecnicas como Power Averaging, Sequence Scaling y PCA para normalizacion y reduccion de dimensionalidad preservando el 95% de la varianza. El dataset se dividio en 80% para entrenamiento y 20% para pruebas.",
+aiUsage:"El estudio aplico un enfoque de aprendizaje supervisado evaluando 23 combinaciones de modelos de clasificacion. Dentro de los modelos no basados en redes neuronales se implementaron Arboles de Decision, Random Forest, LightGBM y Stacking. En los modelos basados en Deep Learning se utilizaron arquitecturas DNN con cuatro capas ocultas de 512 nodos y CNN con tres capas convolucionales unidimensionales. Ambas arquitecturas emplearon funciones ReLU, optimizador ADAM, Softmax para clasificacion multiclase y dropout de 0.3 para evitar overfitting.",
+findings:"La arquitectura DNN alcanzo el mejor desempeno manteniendo un Success Probability de 1 en la mayoria de escenarios con alta SNR. Los modelos basados en IA superaron ampliamente la deteccion convencional, logrando identificar correctamente el indice en un solo intento incluso bajo niveles criticos de SNR de hasta -4.11 dB. Tambien se demostro que los modelos non-NN dependen considerablemente de la calidad del preprocesamiento, donde PCA fue la tecnica mas efectiva para mejorar la clasificacion.",
+conclusions:"La investigacion concluye que sustituir los metodos tradicionales de blind detection por clasificadores basados en Machine Learning es una alternativa eficiente para redes 5G. La combinacion de arquitecturas DNN con tecnicas de preprocesamiento como Power Averaging permite alcanzar alta precision y tiempos de entrenamiento reducidos. La integracion de estos modelos inteligentes mejora la adaptacion de los modems frente a fluctuaciones del entorno inalambrico y optimiza el rendimiento de la red.",
+references:`[1] Kang, S., Lee, T., Kim, J., Lee, A.-R.-S., Kim, J., & Jo, O. (2023).
+Intelligent index classification method based on machine learning for detection of reference signal in 5G networks.
+IEEE Access, 11, 100810–100822.
+https://doi.org/10.1109/ACCESS.2023.3314167`,
+url:"https://ieeexplore.ieee.org/document/10247000"
             },
 
             // =========================================
@@ -725,20 +745,18 @@ url:
             {
                 id:16,
                 category:"Machine Learning",
-                title:"",
-                aiTech:"",
-                problem:"",
-                methodology:"",
-                aiUsage:"",
-                findings:"",
-                conclusions:"",
-                references:`
-    [1] Autor, A. (2025).
-    Titulo del paper.
-    Revista o Conferencia.
-    https://doi.org/xxxxx
-`,
-                url:""
+                title:"Adaptive Physical Layer Authentication Using Machine Learning With Antenna Diversity",
+                aiTech:"Support Vector Machine",
+                problem:"La proliferacion de dispositivos IoT dentro de las redes moviles heterogeneas ha incrementado la vulnerabilidad frente a ataques perpetrados por usuarios ilegitimos, destacando el spoofing y la denegacion de servicio. En este contexto, los metodos tradicionales de autenticacion de capas superiores (ULA) presentan una elevada carga de comunicacion y una creciente vulnerabilidad ante el poder computacional de los atacantes. Los esquemas convencionales de autenticacion de capa fisica (PLA) exhiben una fiabilidad reducida y dificultades para distinguir entre multiples usuarios operando en canales inalambricos complejos y variantes en el tiempo. Por ello surge la necesidad de desarrollar un mecanismo ligero y adaptativo que explote los atributos fisicos y unicos del canal inalambrico con el fin de garantizar una seguridad eficiente.",
+methodology:"La investigacion propone el esquema ALPLA (Adaptive Lightweight Physical Layer Authentication) el cual emplea una arquitectura de enlace uplink donde una estacion base utiliza diversidad de antenas en la recepcion para autenticar a un usuario legitimo frente a posibles atacantes. La metodologia se estructura en dos fases: 1. Fase inicial: Se ejecuta una autenticacion ULA convencional para garantizar la legitimidad inicial del usuario, se recolectan las señales de referencia de sondeo (SRS) provenientes de la trama de radio 5G que permite estimar la informacion del estado del canal (CSI) sin incurrir en una sobrecarga de comunicacion en la red. 2. Fase dos: El sistema extrae las caracteristicas de las señales SRS recibidas de usuarios desconocidos y las normaliza mediante un escalado Min-Max ajustando los valores en el rango de 0 a 1 para mantener la precision del modelo algoritmico frente a la movilidad del usuario y las variaciones lentas del canal y se implemento una sliding window que descarta los datos mas antiguos y actualiza el sistema de forma continua utilizando solo los nuevos registros validados como legitimos.",
+aiUsage:"La investigacion utiliza un modelo de Maquina de Vectores de Soporte de una sola clase (OCC-SVM), algoritmo de aprendizaje supervisado para la deteccion de anomalias y valores atipicos que requiere solo los datos del usuario legitimo para su entrenamiento. Su aplicacion tiene las siguientes etapas: 1. Extraccion de features: Por cada una de las N antenas receptoras se obtienen tres caracteristicas fisicas fundamentales: la magnitud (M), la parte real (R) y la parte imaginaria (I) de la señal. Esto da como resultado un espacio de caracteristicas con una dimension de 3N. 2. Funcion de decision: El modelo calcula una funcion de decision (f) que encapsula gran parte de los datos de entrenamiento dentro de un limite de autenticacion que sea optimo. Para ello se evaluaron kernels lineales, sigmoideos y polinomiales que permiten mapear los datos hacia espacios de mayor dimensionalidad. 3. Diversidad espacial: Al omitir la combinacion de las señales provenientes de las antenas el algoritmo aprovecha las diferencias espaciales unicas de cada antena para potenciar significativamente la discriminacion entre los usuarios. 4. Desempeño: La efectividad se valido mediante el analisis del authentication rate, false alarm rate y el missed detection rate.",
+findings:"Los hallazgos demostraron que la tasa de autenticacion (AR) aumenta de manera significativa con una diversidad de antenas, en un entorno con un (SNR) de 12 dB, esta metrica ascendio de un 94 % con una sola antena a un 99.9 % al utilizar un arreglo de ocho. Se comprobo que la velocidad del usuario mejora los niveles de seguridad del sistema puesto que un mayor efecto Doppler facilita la discriminacion de los atributos especificos del canal inalambrico. Un hallazgo del estudio indica que las tecnicas tradicionales de combinacion de diversidad degradan el proceso de autenticacion evidenciando diferencias de rendimiento de al menos un 17 % debido a que provocan que las caracteristicas fisicas de los usuarios resulten menos distinguibles para la IA y se valido que el modelo ALPLA posee una baja complejidad computacional.",
+conclusions:"Como conclusion se determino que la integracion de muchas de antenas con el algoritmo OCC-SVM provee una solucion de seguridad adaptativa para la capa fisica de las redes 5G y de futuras generaciones. De igual forma el ajuste dinamico del limite de autenticacion permite rastrear las variaciones del canal provocadas por la movilidad del usuario sin generar una sobrecarga de señalizacion adicional gracias al SRS estandarizadas. El esquema predictivo propuesto supera a otros metodos ya que logra maximizar la tasa de autenticacion mientras minimiza de manera sustancial la complejidad operativa del sistema.",
+references:`[1] Abdrabou, M., & Gulliver, T. A. (2022).
+Adaptive physical layer authentication using machine learning with antenna diversity.
+IEEE Transactions on Communications, 70(10), 6604–6614.
+https://doi.org/10.1109/TCOMM.2022.3196648`,
+url:"https://ieeexplore.ieee.org/document/9851464"
             },
 
             // =========================================
@@ -747,20 +765,37 @@ url:
             {
                 id:17,
                 category:"Machine Learning",
-                title:"",
-                aiTech:"",
-                problem:"",
-                methodology:"",
-                aiUsage:"",
-                findings:"",
-                conclusions:"",
-                references:`
-    [1] Autor, A. (2025).
-    Titulo del paper.
-    Revista o Conferencia.
-    https://doi.org/xxxxx
-`,
-                url:""
+                title:"Smoothing-Aided Support Vector Machine Based Nonstationary Video Traffic Prediction Towards B5G Networks",
+                aiTech:"Support Vector Machine",
+                problem:"La incapacidad de los modelos lineales tradicionales (AR, ARMA, ARIMA) para predecir con exactitud el tráfico de video de tasa de bits variable (VBR) en redes B5G ocurre porque el tráfico moderno presenta fluctuaciones no estacionarias derivadas de su autosimilitud, naturaleza de ráfagas y dependencia de largo alcance (LRD). Esto impide cumplir con los requisitos de calidad de servicio y experiencia en la asignación dinámica de ancho de banda ya que una subestimación provoca la pérdida de paquetes mientras que una sobreestimación desperdicia recursos espectrales. En base a esto surge la necesidad de implementar un modelo capaz de mitigar estas fluctuaciones con el fin de mejorar la capacidad de aproximación no lineal en las predicciones de múltiples pasos hacia adelante.",
+
+methodology:`La investigación propone el modelo SSVM (Smoothing-Aided Support Vector Machine), un sistema uniforme y sucesivo que integra módulos funcionales de suavizado y regresión, El flujo se describe de la siguiente forma:
+
+1. Pre procesamiento: Se aplican cuatro algoritmos de suavizado priorizados para transformar las series de tráfico altamente oscilatorias en secuencias continuas y estacionarias: promedio móvil (MA), suavizado gaussiano (GS), suavizado robusto ponderado localmente (RLWS) y suavizado Savitzky-Golay (SG), estos métodos utilizan una ventana deslizante para reducir el tamaño de las tramas leptocúrticas y eliminar los valores atípicos.
+2. Dataset: Se utilizaron trazas reales de video de noticias de la NBC codificadas en H.264/AVC con estructura G16B3 GOP que contienen 49 521 tramas con transiciones frecuentes de escenas.
+3. Evaluación: El rendimiento se cuantificó con el error cuadrático medio normalizado en predicciones a 1, 50 y 200 pasos hacia adelante y las simulaciones se hicieron en MATLAB 2019.`,
+
+aiUsage:`Se utilizó una Máquina de Vectores de Soporte por Mínimos Cuadrados (LS-SVM) donde su aplicación sigue la estructura:
+
+1. Mapeo de características: El algoritmo utiliza una función de mapeo no lineal para proyectar los datos de entrada hacia un espacio de alta dimensión, lo que facilita la construcción de un hiperplano de separación óptimo.
+2. Optimización: El modelo LS-SVM tiene la regla de minimización del riesgo estructural que convierte la regresión en un problema de optimización y se resuelve mediante el método de los multiplicadores de Lagrange.
+3. Selección de kernel: Despues de evaluar el uso de funciones de base radial (RBF), polinomiales y de perceptrón multicapa (MLP), se determinó que el kernel lineal resulta ser la opción más adecuada para la predicción de video.
+4. Ajustes en el hiperparámetros: Parametros como la medida de regularización (C) y los del kernel, se establecieron utilizando el método de grid search.`,
+
+findings:`Los resultados de la evaluación técnica evidencian el desempeño del modelo a través de los siguientes hallazgos:
+
+1. Superioridad predictiva: El modelo SSVM superó en gran manera al LSTAR, logrando reducciones del Error Cuadrático Medio Normalizado en un 32.35 % (para QP = 10) y un 30.94 % (para QP = 34) en predicciones.
+2. Sensibilidad de la ventana: La precisión es dependiente del tamaño de la ventana de suavizado, donde el uso de ventanas más grandes mejora el rendimiento del Error Cuadrático Medio Normalizado.
+3. Validación estadística: Mediante histogramas, gráficos QQ y diagramas de caja se demostró que la distribución de la salida del modelo SSVM es idéntica a la señal real en predicciones a corto plazo lo que reduce los bursty points.`,
+
+conclusions:"La integración de mecanismos de suavizado proporciona puntos de inicialización para la aproximación no lineal, lo que permite una gestión más eficiente del tráfico de video no estacionario. Este enfoque da a las redes B5G la inteligencia necesaria para una asignación dinámica de recursos más precisa.",
+
+references:`[1] Li, Y., Wang, J., Sun, X., Li, Z., Liu, M., & Gui, G. (2020).
+Smoothing-aided support vector machine based nonstationary video traffic prediction towards B5G networks.
+IEEE Transactions on Vehicular Technology, 69(7), 7493–7502.
+https://doi.org/10.1109/TVT.2020.2993262`,
+
+url:"https://ieeexplore.ieee.org/document/9090371"
             },
 
             // =========================================
@@ -769,20 +804,40 @@ url:
             {
                 id:18,
                 category:"Machine Learning",
-                title:"",
-                aiTech:"",
-                problem:"",
-                methodology:"",
-                aiUsage:"",
-                findings:"",
-                conclusions:"",
-                references:`
-    [1] Autor, A. (2025).
-    Titulo del paper.
-    Revista o Conferencia.
-    https://doi.org/xxxxx
-`,
-                url:""
+                title:"Machine Learning Inspired Codeword Selection For Dual Connectivity in 5G User-Centric Ultra-Dense Networks",
+                aiTech:"Support Vector Machine",
+                problem:"En las redes ultradensas centradas en el usuario (UUDN) la conectividad dual permite a los dispositivos recibir señales simultáneas de estaciones macro y de celdas pequeñas mediante tecnología massive MIMO en ondas mmWave. El principal desafío radica en que cada estación debe seleccionar rápidamente un codeword para dirigir un haz analógico hacia el usuario. Ante el aumento masivo de nodos y dispositivos, los algoritmos tradicionales basados en la estimación de canal o en el cálculo de la tasa de suma promedio resultan prohibitivos e impide una selección rápida y precisa en entornos dinámicos.",
+
+methodology:`La investigación propone el algoritmo de clasificación iterativa SVM-SMO, el cual está diseñado para optimizar la selección de las palabras de código. La metodología sigue el siguiente proceso para su implementación:
+
+1. Modelado: La distribución aleatoria de las estaciones MBS y SBS se modela matemáticamente mediante procesos de puntos de Poisson homogéneos en un plano bidimensional con el fin de derivar la ASR de cada usuario.
+
+2. Canal mmWave: Se utiliza un modelo de canal agrupado de banda estrecha basado en el modelo extendido de Saleh-Valenzuela que incorpora variables físicas clave como la ganancia compleja del camino y los ángulos de llegada (AoA) y los ángulos de salida (AoD).
+
+3. Datos: Se implementó una base de datos de gran escala para el entrenamiento de la IA que incluye las potencias de transmisión y los parámetros del canal. Estos últimos están compuestos por 4L + 2 valores reales por muestra donde L representa el número de caminos de propagación.
+
+4. Simulación: Se realizó la simulación utilizando Google TensorFlow sobre una plataforma de aceleración de hardware con cuatro tarjetas gráficas Nvidia GeForce GTX dentro de un clúster y el escenario de pruebas tuvo 20.000 muestras para entrenamiento inicial y trabajo bajo una configuración con una densidad de SBS de 1 x 10^-4 m^-2 y un radio de comunicación de 100 m`,
+
+aiUsage:`Con un enfoque de aprendizaje automático supervisado basado en un clasificador iterativo de Support Vector Machine se implementó una aplicación técnica que se detalla a continuación:
+
+1. Clasificador SVM-SMO: Con el desbalance presente en los datos, se emple el algoritmo de optimización mínima secuencial (SMO) con el propósito de entrenar el clasificador de forma eficiente.
+
+2. Funcionamiento: Con el objetivo de mapear cada muestra de entrenamiento hacia una palabra de código óptima que logre maximizar el SNR la IA encuentra un hiperplano separador entre los vectores de características dentro de un espacio transformado mediante el uso de un kernel lineal.
+
+3. Proceso iterativo: El algoritmo clasifica las muestras basándose en subconjuntos de dos palabras de código candidatas a la vez. Este procedimiento se repite de manera sistemática hasta lograr encontrar todos los hiperplanos necesarios.
+
+4. Lagrange: El problema del hiperplano se resuelve utilizando multiplicadores de Lagrange que garantiza matemáticamente la convergencia del algoritmo de acuerdo con el teorema de Osuna que en la práctica permite que las estaciones base seleccionen el haz óptimo guiándose directamente por estos hiperplanos evitando así el cálculo de las métricas SNR para cada una de las palabras de código.`,
+
+findings:`Los resultados verifican que el algoritmo ISSC alcanza un rendimiento de ASR muy idéntico al límite teórico superando ampliamente al enfoque tradicional de estimación de canal (CE) y su mayor ventaja es la reducción de la complejidad computacional ya que utiliza el modelo de IA que fue entrenado, el sistema selecciona directamente el haz óptimo sin necesidad de realizar búsquedas en el libro de códigos y minimiza la sobrecarga de interacción entre las estaciones base y los usuarios. Por ello el sistema demostró ser adaptativo ante fluctuaciones en la densidad de celdas pequeñas y en la cantidad de usuarios conectados.`,
+
+conclusions:"Como conclusión la integración de clasificadores iterativos SVM en las redes UUDN facilita una gestión de haces eficiente y de baja complejidad para la conectividad dual en entornos 5G. El uso del algoritmo SMO para el entrenamiento de los hiperplanos de separación permite que las estaciones base aprendan las características intrínsecas del sistema y ejecuten la selección de las palabras de código de manera proactiva, Por lo cual este marco basado en IA se consolida como una solución técnica para garantizar la escalabilidad de las redes ultradensas ya que se demostró un equilibrio óptimo entre el rendimiento de la transmisión y los recursos exigidos.",
+
+references:`[1] Yang, Y., Deng, X., He, D., You, Y., & Song, R. (2019).
+Machine learning inspired codeword selection for dual connectivity in 5G user-centric ultra-dense networks.
+IEEE Transactions on Vehicular Technology, 68(8), 8284–8288.
+https://doi.org/10.1109/TVT.2019.2923314`,
+
+url:"https://ieeexplore.ieee.org/document/8737709"
             },
 
             // =========================================
@@ -791,20 +846,34 @@ url:
             {
                 id:19,
                 category:"Machine Learning",
-                title:"",
-                aiTech:"",
-                problem:"",
-                methodology:"",
-                aiUsage:"",
-                findings:"",
-                conclusions:"",
-                references:`
-    [1] Autor, A. (2025).
-    Titulo del paper.
-    Revista o Conferencia.
-    https://doi.org/xxxxx
-`,
-                url:""
+                title:"Lightweight Machine Learning for Efficient Frequency-Offset-Aware Demodulation",
+                aiTech:"Support Vector Machine",
+                problem:"El desplazamiento de la frecuencia portadora (CFO) es un fenómeno que surge debido al desajuste entre los osciladores del transmisor y el receptor, También por el efecto Doppler que es provocado por el movimiento de los dispositivos. A pesar de que se existen técnicas de estimación para eliminarlo suelen persistir imprecisiones que generan un CFO residual. Este problema introduce un error de fase que varía en el tiempo y degrada el rendimiento del decodificador al incrementar la tasa de error de símbolo. Este impacto resulta crítico en esquemas de modulaciones densas como la 1024 QAM que son utilizadas en los estándares 5G y 802.11ax. En estos escenarios la asimetría en la distribución espacial de los símbolos recibidos causada por amplitudes desiguales no logra ser compensada de manera efectiva por los demoduladores convencionales ya que operan bajo límites estáticos.",
+
+methodology:`La investigación implementa un diseño dual que aborda un análisis analítico y otro experimental, derivaron la función de distribución de probabilidad (PDF) del CFO residual bajo condiciones de ruido gaussiano y demostraron matemáticamente que este fenómeno exhibe una distribución de naturaleza no gaussiana. A partir de este punto, se realizó el cálculo de los límites de demodulación basados en el criterio de máxima verosimilitud (Maximum Likelihood) para señales OFDM. Este proceso indico que en los esquemas de modulación con amplitudes desiguales como 16-QAM o APSK, las fronteras de decisión óptimas son de formas irregulares y dependen directamente del tiempo de la última corrección del CFO.
+
+Para validar la viabilidad de la propuesta de la investigación se realizaron simulaciones en el entorno de LabVIEW, las cuales fueron realizadas en un banco de pruebas físico. Las mediciones utilizaron periféricos de radio por software universal (USRP) modelo NI-2922, los cuales fueron configurados para operar a una frecuencia portadora de 2.48 GHz y un ancho de banda de 200 kHz.`,
+
+aiUsage:`Con el propósito de aproximar los límites de demodulación óptimos de una manera práctica y aplicable en tiempo real, el estudio implementa una técnica basada en máquinas de vectores de soporte (SVM). El despliegue técnico de esta herramienta se estructura bajo las siguientes características operativas:
+
+1. Kernel elipsoidal: Se implementó un kernel específico que proyecta los componentes en fase y cuadratura del símbolo recibido mediante una transformación polinómica de segundo grado, esto mapea el espacio bidimensional de la señal original hacia un espacio de características de mayor dimensión con el fin de capturar los términos al cuadrado y sus productos cruzados y permite trazar fronteras de decisión elipsoidales altamente precisas.
+
+2. Clasificación multiclase: El sistema utiliza un esquema de clasificación “todos contra todos” que permite reducir la complejidad operativa ya que los clasificadores se entrenan de manera exclusiva para el primer cuadrante de la constelación, con esto se logra aplicar los resultados al resto del plano aprovechando la simetría vertical y horizontal del mapa de símbolos.
+
+3. Eficiencia: El modelo ejecuta un entrenamiento offline con diferentes valores de SNR y una variable de tiempo (t), Para la fase de pruebas el proceso de detección de símbolos exigió apenas 22 multiplicaciones de punto flotante que permitio superar la agilidad de otros enfoques de IA como las redes neuronales o árbol de decisión.`,
+
+findings:`El modelo SVM logra una precisión cercana a los límites óptimos teniendo una complejidad operacional menor, mediante las simulaciones de sistema se comprobó que la demodulación consciente del CFO alcanzó ganancias de hasta 3 dB por encima de los esquemas tradicionales utilizados en configuraciones de modulación de 16-QAM y 64-QAM.
+
+El uso de la modulación de ofuscación que es un mecanismo operativo donde se camuflan símbolos dentro de mapas densos y combinan de manera sinérgica con códigos de modulación por codificación reticular (TCM) logra que la ganancia de rendimiento suba hasta los 5.5 dB. Con lo cual el clasificador SVM mantiene una alta robustez operativa de la señal frente a la presencia de interferencia entre portadoras y bajo condiciones de estimación imperfecta del canal.`,
+
+conclusions:"Como conclusión los demoduladores convencionales fallan debido a su naturaleza estática frente al error de fase variable inducido por el CFO residual, La integración de un marco de aprendizaje automático permite que el receptor adapte sus regiones de decisión de forma dinámica, con lo cual logra mitigar de forma eficaz los errores de transmisión en los esquemas densos.",
+
+references:`[1] Siyari, P., Rahbari, H., & Krunz, M. (2019).
+Lightweight machine learning for efficient frequency-offset-aware demodulation.
+IEEE Journal on Selected Areas in Communications, 37(11), 2544–2558.
+https://doi.org/10.1109/JSAC.2019.2933956`,
+
+url:"https://ieeexplore.ieee.org/document/8792186"
             },
 
             // =========================================
@@ -812,57 +881,446 @@ url:
             // =========================================
             {
                 id:20,
-                category:"Machine Learning",
-                title:"",
-                aiTech:"",
-                problem:"",
-                methodology:"",
-                aiUsage:"",
-                findings:"",
-                conclusions:"",
-                references:`
-    [1] Autor, A. (2025).
-    Titulo del paper.
-    Revista o Conferencia.
-    https://doi.org/xxxxx
-`,
-                url:""
+                category:"Deep Learning",
+                title:"A Two-Timescale Resource Allocation Method Based on Deep Reinforcement Learning for 6G Networks",
+                aiTech:"Multiple",
+                problem:"El despliegue de las redes 6G introduce grandes cantidades de dispositivos con una Calidad de Servicio (QoS) muy diverso en latencia, ancho de banda y pérdida de paquetes. Los algoritmos de aprendizaje por refuerzo resultan ineficaces por su complejidad y variabilidad operativa. Las arquitecturas de asignación centralizada tradicionales generan retrasos y tienen costos elevados de comunicación, Por esto es fundamental implementar un esquema que gestione de forma independiente las variaciones de tráfico regional a largo plazo y las ráfagas de servicios a corto plazo con el fin de lograr optimizar el uso de los recursos del sistema y garantizar el cumplimiento de la calidad de servicio.",
+methodology:"La investigación propone un marco de asignación de recursos estructurado en dos escalas temporales que fueron diseñados para optimizar las redes de acceso óptico, el modelo opera de la siguiente manera:\n\n1. Large timescale: En esta etapa un controlador de capa superior ubicado en la oficina central se encarga de ejecutar la asignación de ancho de banda hacia los Access Points, La distribución macro se calcula tomando como referencia las métricas acumuladas durante el periodo anterior como la tasa de utilización del sistema, el promedio de la calidad de servicio y los niveles de pérdida de paquetes.\n\n2. Small-timescale: En esta etapa los Access Points asumen el rol de controladores de capa inferior encargados de refinar la distribución inicial, en cada intervalo de tiempo los nodos asignan los bloques de recursos (RB) de manera precisa a los usuarios finales. En este proceso de asignación granular el sistema identifica el tipo de servicio solicitado por cada terminal para garantizar un tratamiento diferenciado y priorizado según las demandas.\n\nPara comprobar el rendimiento del esquema se desplego una red de prototipo físico conformada por cuatro computadora. La comunicación en red entre estos nodos se estableció mediante las funciones de la librería socket de Python 3.7 y ejecutando todo el proceso de validación bajo un entorno de aprendizaje automático basado en TensorFlow.",
+aiUsage:"Para optimizar la utilización del sistema y la calidad de servicio, Se implementa un marco de Deep Reinforcement Learning en dos capas:\n\n3. Deep Deterministic Policy Gradient (DDPG): Este algoritmo se ejecuta en el controlador de la oficina central para gestionar el espacio continuo de acciones que requiere la asignación de ancho de banda a gran escala, donde su funcionamiento esta en una arquitectura de actor crítico que es una red de política que se encarga de generar las acciones de asignación mientras que una red de valor evalúa la eficacia de las decisiones basándose en la retroalimentación constante de los Access Points.\n\n4. Dueling Deep Q-Network (Dueling-DQN): Desplegado en los Access Points este algoritmo se encarga de asignar los recursos de manera detallada durante la escala temporal corta, Esta variante optimiza el rendimiento de las redes DQN al descomponer matemáticamente la evaluación de las decisiones en dos elementos, una función que evalúa el estado del entorno y una función de ventaja para la acción tomada, lo que otorga al modelo una capacidad de generalización superior frente a combinaciones operativas que no experimenta en el entrenamiento.\n\nPara mitigar la lentitud del entrenamiento de los sistemas acoplados, se aplicó la compresión del espacio de acciones apoyada en la predicción del tráfico e integraron técnicas de aprendizaje por transferencia para acelerar el proceso de interacción entre los agentes de IA y su entorno de red.",
+findings:"Los resultados evidencian que el esquema supera a los métodos de agente único y a los enfoques OFDMA tradicionales ya que logra que el uso de recursos se aproxime a su límite teórico mientras reduce el retardo del servicio de forma estable.\n\nEl sistema garantiza una calidad de servicio (QoS) altamente efectiva, donde el 80% de los usuarios de alta prioridad experimentaron latencias inferiores a 5 intervalos de tiempo en contraste con el 55% alcanzado por la prioridad más baja. El modelo demostró una gran robustez ante fluctuaciones dinámicas del tráfico con lo que logro readaptarse y recuperar su rendimiento óptimo en apenas 3000 épocas tras sufrir variaciones en la red.",
+conclusions:"En conclusión la gestión de recursos en dos escalas temporales mediante Dueling-DQN y DDPG optimiza de forma simultánea la utilización del sistema y la calidad del servicio en redes 6G. Al descentralizar las decisiones hacia el borde de la red también reduce de gran forma la carga computacional de los controladores centrales y se minimizan los retrasos. La integración de predicción de tráfico y aprendizaje por transferencia fue indispensable para viabilizar el despliegue de estos modelos de IA multicapa en entornos de red reales.",
+references:`[1] Liu, J., et al. (2026).
+A Two-Timescale Resource Allocation Method Based on Deep Reinforcement Learning for 6G Networks.
+IEEE Transactions on Networking, 34, 3625–3640.
+https://doi.org/10.1109/TON.2026.3664377`,
+url:"https://ieeexplore.ieee.org/document/11396387"
             },
             {
                 id:21,
-                category:"Machine Learning",
-                title:"",
-                aiTech:"",
-                problem:"",
-                methodology:"",
-                aiUsage:"",
-                findings:"",
-                conclusions:"",
-                references:`
-    [1] Autor, A. (2025).
-    Titulo del paper.
-    Revista o Conferencia.
-    https://doi.org/xxxxx
-`,
-                url:""
+                category:"Deep Learning",
+                title:"Uplink Puncturing for Mixed URLLC and eMBB Services in 5G-based IWNs: A Model-Aided DRL Method",
+                aiTech:"DDQN",
+                problem:"La coexistencia de servicios URLLC y eMBB en redes industriales inalámbricas (IWN) presenta un desafío crítico debido a sus requisitos conflictivos ya que la Industria 4.0 exige latencias estrictas de 1 ms para el control de sensores pero simultáneamente requiere altas tasas de datos para el monitoreo por video. Este problema se agrava en el enlace de uplink ya que la estación base desconoce el momento exacto en que los equipos tendrán listos sus paquetes. Ante los ineficientes métodos de reserva para el tráfico esporádico de URLLC que genera desperdicio de recursos o sobrecarga, se hace importante implementar un método de puncturing dinámico, el cual permite que las transmisiones urgentes de URLLC ocupen de forma inmediata los recursos previamente asignados al tráfico regular de eMBB.",
+methodology:"La metodología implementa un marco de optimización basado en un sistema de transmisión de subida siguiendo los estándares de la 3GPP a través de cuatro etapas:\n\n1. Configuración de recursos: Se utiliza una estructura de tramas basada en 5G para gestionar el tráfico, los servicios eMBB se programan utilizando intervalos de tiempo largos (L-TTI) y las comunicaciones de URLLC se asignan a mini-slots o intervalos cortos (S-TTI) para garantizar una fina granularidad temporal.\n\n2. Diseño del esquema RRCC: Se desarrolla una técnica Random Repetition Coding-based Contention (RRCC) que permite que los paquetes URLLC seleccionen aleatoriamente cualquier unidad de recurso disponible para transmitir K veces antes de su fecha límite.\n\n3. Modelo de fiabilidad: Se implementa un modelo analítico de fiabilidad que evalúa las condiciones dinámicas del entorno tomando en cuenta las posibles colisiones entre los usuarios y los errores del canal inalámbrico bajo condiciones de desvanecimiento tipo Rician o Rayleigh.\n\n4. Validación: Se realizaron simulaciones a nivel de enlace recreando un escenario de fábrica automatizada bajo la cobertura de una estación base 5G y fue validado al compararlo con métodos convencionales de reserva en el dominio del tiempo (TRM) y de la frecuencia (FRM).",
+aiUsage:"La investigacion aplica Deep Reinforcement Learning a través del algoritmo Double Deep Q-Network (DDQN) siguiendo un esquema estructurado:\n\n5. Espacio de estados: El agente de IA monitorea de forma continua un espacio de estados infinito que abarca las ganancias de canal de los usuarios eMBB y la tasa de generación de los paquetes esporádicos de URLLC.\n\n6. Conjunto de acciones: La IA toma decisiones operativas sobre dos conjuntos finitos:\n• Lista de programación asignada para el servicio eMBB.\n• Cantidad de repeticiones necesarias para el servicio URLLC.\n\n7. Model Aided: La innovación técnica radica en la integración del modelo analítico de fiabilidad directamente dentro del proceso de aprendizaje que permite pre calcular el número mínimo de repeticiones (K) que se requiere para garantizar el estricto umbral de confiabilidad con el fin de reducir la dimensión del espacio de acciones del agente y acelerar la convergencia de su entrenamiento.\n\n8. Función de recompensa: El sistema se rige por una función de recompensa diseñada de forma estratégica con el fin de maximizar la tasa de datos acumulada de eMBB e imponiendo penalizaciones severas en caso de que se lleguen a incumplir requisitos de latencia o fiabilidad.",
+findings:"Entre los hallazgos más importantes están los siguientes:\n\n9. El enfoque model aided DRL es aproximadamente un 50% más rápido que las soluciones model free.\n\n10. El esquema RRCC requiere menos repeticiones (K) que alternativas como ORS o CRCC para lograr la misma fiabilidad y protege el tráfico de banda ancha.\n\n11. La técnica puncturing supera significativamente la eficiencia de las estrategias basadas en reserva rígida.\n\n12. Los agentes de IA logran ajustar de forma autónoma la carga del tráfico URLLC para evitar la saturación de la red.",
+conclusions:"Se determina que integrar modelos analíticos dentro de marcos DRL es una solución robusta frente a los conflictos de asignación de recursos en la RAN, el puncturing en enlaces de uplink logra maximizar la tasa de datos del servicio eMBB sin llegar a comprometer la ultra confiabilidad que exigen las misiones industriales críticas consolidando un pilar importante para viabilizar y garantizar la autonomía operativa de las fábricas inteligentes en el exigente ecosistema de la Industria 4.0.",
+references:`[1] Ding, J., Zheng, M., Yu, H., Wang, Y., & Xu, C. (2025).
+Uplink puncturing for mixed URLLC and eMBB services in 5G-based IWNs: A model-aided DRL method.
+Frontiers of Information Technology & Electronic Engineering, 26(11), 2338–2352.
+https://doi.org/10.1631/FITEE.2500173`,
+url:"https://ieeexplore.ieee.org/document/11359121"
             },
             {
                 id:22,
-                category:"Machine Learning",
+                category:"Deep Learning",
+                title:"Graphic Deep Reinforcement Learning for Dynamic Resource Allocation in Space-Air-Ground Integrated Networks",
+                aiTech:"Multiple",
+                problem:"El desarrollo de redes integradas espacio-aire-tierra (SAGIN) es clave para la cobertura global 6G pero su gestión dinámica resulta compleja debido a la constante movilidad de satélites LEO y plataformas aéreas HAPS/UAV que altera drásticamente los canales y recursos. La optimización tradicional es demasiado compleja para operar en tiempo real y el DRL convencional falla al no capturar las dependencias espaciales y topológicas generando una convergencia lenta y un bajo rendimiento que resulta indispensable un nuevo enfoque, por ello surge la necesidad de un sistema capaz de procesar datos estructurados en gráficos y adaptarse a servicios heterogéneos sensibles (DS) o tolerantes al retardo (DT).",
+methodology:"La investigación propone el marco Graphic Deep Reinforcement Learning para resolver el problema de la toma de decisiones secuenciales en la descarga de tareas y la asignación de recursos, modelando una arquitectura multicapa basada en la tecnología OFDMA estructurada de la siguiente manera:\n\n1. El modelo divide los procesos en una Long Timescale (LT) orientada a gestionar las tareas tolerantes al retardo y en una Short Timescale (ST) diseñada específicamente para las tareas sensibles al retardo.\n\n2. Clasifica la información del entorno en dos categorías: Los estados estáticos como las ubicaciones iniciales y las capacidades del sistema que se estructuran directamente en forma de gráficos mientras que los estados dinámicos capturan el flujo de las operaciones monitoreando los recursos restantes y las tareas actuales.\n\n3. Se formuló una función que aplica penalizaciones directas al sistema en caso de que se lleguen a violar las restricciones operativas de las máquinas virtuales, los límites de los subcanales o los plazos máximos de latencia.\n\n4. La viabilidad del diseño se dio a través de simulaciones que integran configuraciones de antenas de arreglo planar uniforme (UPA) empleando modelos de canal específicos para cada segmento de la red contemplando variables físicas como el desvanecimiento de Rician y el ruido blanco gaussiano aditivo (AWGN).",
+aiUsage:"El estudio implementa una arquitectura avanzada que integra de manera conjunta Redes Neuronales de Gráficos (GNN), aprendizaje por refuerzo profundo (DRL) y meta-aprendizaje (meta-learning). El funcionamiento técnico de este sistema se articula a través de cuatro componentes clave:\n\n5. GFEN (Graphic Feature Extraction Network): Utiliza una red convolucional de gráficos (GCN) para procesar los estados del entorno que se estructuran matemáticamente como un gráfico g=(V,E), en este modelo los usuarios, los satélites LEO y las plataformas HAPS actúan como nodos (V) y los enlaces de comunicación conforman los bordes (E) logrando eliminar la pérdida de información que ocurre al utilizar métodos de vectorización tradicional.\n\n6. LAGN (Latent Action Generation Network): Basada en una versión adaptada del algoritmo TRPO (Trust Region Policy Optimization) que se encarga de generar acciones latentes y discretas como continuas, este método responde a actualización de políticas respaldado por una función de ventaja que garantiza una mejora monotónica y aporta estabilidad al entrenamiento.\n\n7. AMN (Action Mapping Network): Emplea redes de memoria a corto y largo plazo (LSTM) en un esquema de codificación eficiente con el fin de generar de manera simultánea las decisiones de descarga de tareas y la asignación precisa de los recursos.\n\n8. MAML (Model-Agnostic Meta-Learning): Se integra esta técnica para dar al sistema una alta capacidad de adaptación frente a entornos nuevos o fluctuaciones en el tráfico y los recursos logrando ajustarse mediante unas pocas actualizaciones de gradiente que reduce la complejidad de su despliegue online.",
+findings:"Los resultados validan una superioridad del marco GDRL frente a enfoques convencionales como PPO, DDPG, SAC y el TRPO ya que logra alcanzar la mayor recompensa del sistema y una menor latencia acumulada, fundamentada en la implementación de GFEN que generó un aumento en el rendimiento al identificar las dependencias inherentes a la estructura gráfica de los estados.\n\nLa integración de MAML permitió que el sistema conservara una alta eficiencia y estabilidad ante variaciones en los parámetros críticos del escenario SAGIN, el esquema de codificación de AMN logró reducir la complejidad del espacio de acciones discretas que de otra forma crecería con la cantidad de satélites y plataformas aéreas facilitando una convergencia del algoritmo mucho más rápida.",
+conclusions:"La investigación determina que el marco GDRL representa una solución para abordar la optimización dinámica de las redes SAGIN en el 6G debido a su capacidad para capturar características gráficas y generar acciones mixtas end-to-end, el sistema logra satisfacer de manera efectiva los requisitos de calidad de servicio que demandan los servicios críticos.",
+references:`[1] Cai, Y., Cheng, P., Chen, Z., Xiang, W., Vucetic, B., & Li, Y. (2025).
+Graphic Deep Reinforcement Learning for Dynamic Resource Allocation in Space-Air-Ground Integrated Networks.
+IEEE Journal on Selected Areas in Communications, 43(1), 334–349.
+https://doi.org/10.1109/JSAC.2024.3460086`,
+url:"https://ieeexplore.ieee.org/document/10681113"
+            },
+{
+                id:23,
+                category:"Deep Learning",
+                title:"Distributed Real-Time and Fair Resource Allocation for 5G Dense Cellular Networks Based on Deep Reinforcement Learning",
+                aiTech:"Multiple",
+                problem:"El despliegue de redes móviles densas en 5G busca satisfacer la gran demanda de tráfico proyectada en 466 exabytes mensuales para 2029, aunque esta densificación genera interferencias que degradan drásticamente la calidad de servicio de los usuarios ubicados en el borde de la celda debido a la debilidad de su señal. Frente a esto los métodos tradicionales de asignación de recursos resultan ineficientes por la imposibilidad de obtener información global del estado del canal en tiempo real ya que el canal cambia más rápido de lo que el sistema puede procesar y con una complejidad computacional que crece exponencialmente a medida que aumentan los usuarios y las estaciones base.",
+
+methodology:"La investigación propone el algoritmo DRFRA-SDML, una arquitectura compuesta por una única red Q profunda (DQN) y múltiples redes neuronales profundas (DNN) de alcance local. El sistema modela matemáticamente una red de enlace descendente conformada por (K) celdas hexagonales, (N) enlaces y (M) subbandas espectrales compartidas.\n\nEn el núcleo de la red se establece un búfer global de repetición de experiencias. Este componente se encarga de recolectar las vivencias operativas de todos los agentes del sistema que a partir de ellas entrena un vector de pesos global que es compartido por todas las DNN locales.\n\nCada enlace descendente está equipado con su propia DNN local que permite que cada agente tome decisiones en tiempo real sobre la selección de la sub banda y el control de la potencia de transmisión, basándose exclusivamente en sus observaciones locales.\n\nPara simular entornos dinámicos con precisión, integra los efectos del desvanecimiento tanto a gran escala como a pequeña escala empleando un modelo de correlación basado en la función de Bessel de orden cero y la frecuencia Doppler máxima.\n\nEl algoritmo fue evaluado mediante simulaciones numéricas, comparando sus resultados frente a diversos métodos, entre ellos la programación fraccional ideal (IFP-FRA), la programación fraccional con retardo de un slot (FP-FRA-D) y la asignación completamente aleatoria.",
+
+aiUsage:"El estudio implementa un enfoque de DRL de carácter distribuido, el cual se estructura de manera detallada bajo las siguientes especificaciones técnicas:\n\n1. Arquitectura de red: El sistema emplea un diseño conformado por cinco capas. Tres son capas ocultas configuradas con 200, 100 y 50 neuronas, respectivamente que operan utilizando funciones de activación ReLU.\n2. Espacio de estados: Con el objetivo de garantizar que el sistema opere utilizando información local, este espacio integra la ganancia del canal directo en el instante (t), la potencia de transmisión en (t-1), el recíproco del peso de optimización, la potencia de interferencia total recibida en (t-1) y la tasa que fue alcanzable durante el intervalo previo.\n3. Función de recompensa: Constituye el núcleo diseñado para equilibrar la eficiencia y la equidad del modelo, se calcula tomando la tasa ponderada del enlace y restándole las penalizaciones por la interferencia generada a los enlaces vecinos, siempre y cuando supere un umbral de potencia específico. Además el modelo aplica pesos dinámicos que resultan inversamente proporcionales a la tasa del enlace para priorizar a los usuarios que experimentan deficiencias en el servicio.\n4. Optimización del aprendizaje: El proceso se realiza con el optimizador RMSProp que su objetivo es minimizar la función de pérdida cuadrática existente entre el valor Q predicho y el valor objetivo.",
+
+findings:"Los resultados validan que el algoritmo DRFRA-SDML supera a los métodos de referencia en tasa de suma total y rendimiento en tiempo real ya que su principal ventaja es su escalabilidad puesto que la complejidad de cada agente local es independiente del tamaño de la red, lo que reduce la latencia de decisión a solo 0.16 ms frente a los 6.65 ms de los enfoques centralizados y mantiene su superioridad técnica incluso al incrementar la cantidad de usuarios o las sub bandas espectrales.",
+
+conclusions:"La integración de DRL bajo una arquitectura de entrenamiento centralizado y ejecución distribuida representa una solución para la gestión de recursos en redes 5G densas gracias a su capacidad para operar con información local, el algoritmo evita el intercambio de señalización entre las estaciones base que reduce drásticamente la sobrecarga del sistema.\n\nAl implementar una función de recompensa enfocada en la equidad, se garantiza que los usuarios ubicados en el borde de la celda reciban una calidad de servicio satisfactoria, alcanzando un equilibrio óptimo entre la capacidad total de la red y la experiencia del usuario.",
+
+references:`[1] Chen, Y., Liu, Z., Yuan, Y., & Guan, X. (2025).
+Distributed real-time and fair resource allocation for 5G dense cellular networks based on deep reinforcement learning.
+IEEE Internet of Things Journal, 12(15), 30698–30709.
+https://doi.org/10.1109/JIOT.2025.3572715`,
+
+url:"https://ieeexplore.ieee.org/document/11009150"
+            },
+{
+                id:24,
+                category:"Deep Learning",
+                title:"Quantum Deep Reinforcement Learning for Digital Twin-Enabled 6G Networks and Semantic Communications: Considerations for Adoption and Security",
+                aiTech:"Hibrido",
+                problem:"El avance hacia las redes 6G plantea una problemática crítica al exigir la gestión de miles de millones de dispositivos con latencias inferiores al milisegundo y fiabilidad extrema para servicios como URLLC y xURLLC, los métodos tradicionales de optimización y el aprendizaje automático colapsan ante el crecimiento de los espacios de estados y acciones que exige la red. Esta crisis tecnológica se agudiza con la integración de las Comunicaciones Semánticas (SemComs) y los Gemelos Digitales (DTs), cuyas demandas computacionales para el procesamiento y la toma de decisiones sobrepasan ampliamente los limitados presupuestos energéticos de los dispositivos actuales que evidencia una barrera que hace necesaria la adopción del Quantum Deep Reinforcement Learning (Q-DRL) para lograr optimizaciones a gran escala en tiempo real.",
+
+methodology:"La investigación propone un marco para la implementación del Q-DRL orientado a las redes 6G estructurado de la siguiente forma:\n\n1. Modelado de gemelos digitales (DTs): El sistema emplea DT para simular de manera segura estados de la red como CSI y SINR junto con métricas de información semántica efectiva que permite llevar a cabo interacciones de prueba sin el riesgo de comprometer la infraestructura física.\n2. Circuitos cuánticos: El modelo opera mediante Circuitos Cuánticos Variacionales (VQC) conformados por capas rotacionales paramétricas (utilizando secuencias de puertas como U_3, R_y o R_z) y capas de entrelazamiento basadas en puertas controlables (como CNOT, CZ y CY), cuyo propósito es mapear la información hacia espacios de Hilbert de alta dimensión.\n3. Entrenamiento: El sistema emplea el algoritmo de descenso de gradiente asistido por la regla de cambio de parámetros, este mecanismo resulta importante para calcular gradientes analíticos directamente sobre hardware cuántico ruidoso de escala intermedia (NISQ).\n4. Validación de seguridad: Se establecio un modelo de red inalámbrica compuesto por puntos de acceso (AP) y usuarios legítimos que operan bajo la amenaza de escuchas ilegales (eavesdroppers), se evalúa técnicamente la capacidad del modelo para maximizar la tasa de secreto acumulada a través de ajustes dinámicos en la potencia de transmisión",
+
+aiUsage:"El estudio implementa un enfoque Q-DRL, integrando operaciones cuánticas dentro de los modelos de aprendizaje profundo con el propósito de manejar espacios masivos de estados y acciones.\nA diferencia del DRL clásico que se basa en vectores euclidianos, el Q-DRL codifica los estados del entorno como el CSI directamente en qubits, permitiendo aprovechar el principio de superposición para representar 2^N estados de manera simultánea.\nEl modelo hace uso de Circuitos Cuánticos Parametrizados (PQC), una arquitectura donde los ángulos de rotación de las puertas cuánticas asumen la función de los pesos de entrenamiento del sistema.\nEl sistema emplea arquitecturas híbridas cuántico clásicas como el gradiente de política determinista profundo (DDPG) basado en el paradigma actor-crítico. En base a este sistema operativo, un crítico cuántico centralizado tiene la capacidad de supervisar múltiples redes actorales cuánticas que facilita la gestión de espacios de acciones continuos.\nPara proteger la red se propone la integración de Máquinas de Vectores de Soporte de una Sola Clase (OCC-SVM) y modelos de Mezcla Gaussiana (GMM) directamente dentro de los gemelos digitales (DT), para mitigar vulnerabilidades como el envenenamiento de datos o los ataques de puerta trasera.",
+
+findings:"Los resultados muestran que el modelo Q-DRL logra una convergencia de entrenamiento más rápida, también alcanza valores de recompensa acumulada superiores frente al DRL clásico. La investigación verificó que el uso de circuitos cuánticos de variación exige una menor cantidad de parámetros de entrenamiento, es decir un menor consumo de memoria para poder igualar el rendimiento del aprendizaje profundo tradicional en tareas operativas como la selección de canales.\n\nEn la seguridad, el sistema logró mejorar de manera significativa la tasa de secreto físico incluso al tener a una alta cantidad de atacantes gracias a su capacidad para procesar información en dimensiones superiores, lo que le otorga al modelo una discriminación mucho más fina y precisa de los atributos del canal.",
+
+conclusions:"El modelo Q-DRL representa una tecnología fundamental para las redes 6G ya que permite la gestión autónoma de los gemelos digitales y la extracción eficiente de significado en las comunicaciones semánticas.\nLa arquitectura mixta propuesta logra optimizar la calidad de servicio y la seguridad en la capa física, lo que establece que el Q-DRL no solo acelera la toma de decisiones, sino que redefine la resiliencia de la infraestructura frente a amenazas avanzadas.",
+
+references:`[1] Narottama, B., et al. (2026).
+Quantum deep reinforcement learning for digital twin-enabled 6G networks and semantic communications: Considerations for adoption and security.
+IEEE Transactions on Network Science and Engineering, 13, 2053–2076.
+https://doi.org/10.1109/TNSE.2025.3609198`,
+
+url:"https://ieeexplore.ieee.org/document/11159156"
+            },
+{
+                id:25,
+                category:"Deep Learning",
+title:"Deep Reinforcement Learning-Based Resource Allocation for Hybrid Bit and Generative Semantic Communications in Space-Air-Ground Integrated Networks.",
+aiTech:"Multiple",
+problem:`Los desafíos de capacidad y presupuesto de enlace en las comunicaciones satelitales son un elementos vital para las futuras redes 6G dado que los datos visuales consumen más del 66% de la capacidad inalámbrica, donde se producen graves retrasos bajo condiciones de baja relación señal a ruido. Aunque existe comunicación semántica para eliminar este problema al transmitir características en lugar de bits exactos, este suele provocar pérdidas de calidad, por ello los actuales enfoques híbridos basados en texto resultan insuficientes para entornos complejos surgiendo la necesidad de desarrollar un marco adaptable que logre equilibrar de manera óptima la fidelidad de la imagen, el consumo del espectro y los retardos computacionales.`,
+methodology:`La investigación diseña una Red Integrada Espacio-Aire-Tierra (SAGIN) estructurada en tres capas fundamentales:
+
+1. Satélites LEO: Actúan como las fuentes principales de las imágenes.
+2. Vehículos aéreos no tripulados (UAV): Operan como relés estratégicos para extender el alcance de la señal.
+3. Usuarios terrestres: Actúan como los receptores finales de la información.
+
+La infraestructura emplea enlaces entre satélites (ISL) para garantizar una conectividad ininterrumpida, manteniendo la comunicación activa en caso de que algún satélite pierda su área de cobertura.
+
+Para la gestión del ancho de banda se propone tres modos de transmisión escalables:
+
+• Modo 1: Ejecuta una codificación de fuente y canal tradicional mediante JPEG y low-density parity-check (LDPC) para garantizar la máxima fidelidad de la imagen pero exige un alto consumo de recursos espectrales.
+
+• Modo 2: Extrae y transmite una descripción en texto de la imagen que alcanza la máxima compresión posible a costa de obtener una baja resolución visual.
+
+• Modo 3 (submodos 3_1, 3_2 y 3_3): Envía de manera combinada el texto y las características vectoriales espaciales (embeddings) para equilibrar de manera efectiva la calidad visual y el consumo de la red.
+
+El funcionamiento dinámico de esta red se modela como un problema de optimización a largo plazo basado en Procesos de Decisión de Markov (MDP) cuyo objetivo es maximizar una métrica matemática desarrollada denominada Eficiencia de Comunicación Semántica (SCE), la cual se encarga de evaluar el equilibrio exacto del proceso al castigar los retrasos temporales y premia la alta calidad de la imagen reconstruida.`,
+aiUsage:`La investigación implementa de manera estratégica a la IA, Integrando inteligencia Artificial Generativa y Deep Reinforcement Learning (DRL) para el procesamiento de los datos y la orquestación de la red.
+
+4. IA generativa: El sistema utiliza los modelos BLIP-2 y CLIP para la compresión de datos a bordo del satélite con el fin de extraer el texto, Igual utiliza un autoencoder variacional (VAE) y un codificador vectorial (VQE) para comprimir las características de la imagen apoyándose en un codebook, de igual forma se emplea un modelo de difusión equipado con una red neuronal UNet para la fase de decodificación en tierra, capaz de reconstruir la imagen en alta resolución a partir de los fragmentos semánticos.
+
+5. DRL: Se integró el algoritmo Distributed Soft Actor-Critic (DSAC) para tomar decisiones dinámicas como puede ser el definir las trayectorias de los UAV, gestionar los emparejamientos y seleccionar el modo de transmisión ideal, este algoritmo aprende a maximizar la recompensa a largo plazo representada por la métrica SCE mediante la evaluación de la distribución de los retornos que es vital para estabilizar el sistema.`,
+findings:`Se demostró la superioridad del algoritmo DSAC, superando modelos de referencia como MAPPO y a la vez a esquemas tradicionales donde los drones operan de manera estática.
+
+A modo de transmisión el Modo 3_3 se consolidó como la alternativa de mayor equilibrio ya que alcanzo la puntuación SCE más alta al compensar el tiempo de transmisión con una calidad óptima en la reconstrucción final de la imagen.
+
+Los resultados evidenciaron una adaptabilidad en la red, incrementando la potencia de transmisión del satélite se otorga un mayor presupuesto de enlace y la IA elige de forma automática modos de generación semántica de mayor calidad, generando una decisión dinámica que logra reducir los retardos.`,
+conclusions:`Como conclusión, el marco híbrido que conjuga la transmisión clásica de bits y la comunicación semántica generativa es una arquitectura muy eficaz para resolver las restricciones de enlace en los ecosistemas SAGIN, implementar la métrica SCE con el algoritmo de control DSAC hace a la red autónoma, garantizando estrategias eficientes y transmisiones visuales de alta calidad en tiempo real que consolida una base grande para la escalabilidad de las futuras redes 6G.`,
+references:`[1] Huang, C., Chen, X., Chen, G., Xiao, P., Li, G. Y., & Huang, W. (2025).
+Deep reinforcement learning-based resource allocation for hybrid bit and generative semantic communications in space-air-ground integrated networks.
+IEEE Journal on Selected Areas in Communications, 43(12), 3942–3954.
+https://doi.org/10.1109/JSAC.2025.3623157`,
+url:"https://ieeexplore.ieee.org/document/11207608"
+            },
+{
+                id:26,
+                category:"Deep Learning",
+                title:"Ultra-Low Latency Optimization in 6G Consumer Electronics Using Synergistic Graph-Reinforcement Learning for Efficient Communication",
+                aiTech:"Multiple",
+                problem:`El desarrollo de las redes 6G orientadas a la electrónica de consumo como los vehículos autónomos y la realidad aumentada exigen alcanzar una latencia ultrabaja que sea inferior a un milisegundo, esto se ve obstaculizado por la resistencia intrínseca de los propios dispositivos, sus tiempos de respuesta y las limitaciones de las redes backscatter, factores que generan ineficiencias operativas. Por ello es que los métodos de optimización actuales resultan insuficientes para capturar y gestionar la complejidad dinámica de estos equipos, en especial cuando deben operar en tiempo real y bajo restricciones de energía y en comunicaciones de terahercios (THz).`,
+methodology:`Se propone el método de Mejora de Respuesta con Restricción de Retardo (DCRE) fundamentado en el Algoritmo de Fusión Sinérgica de Grafos y Refuerzo (SGRFA), para gestionar la complejidad de la red esta metodología se estructura de la siguiente manera:
+
+1. Modelo de grafos: El sistema mapea las interacciones de los dispositivos a través de complejas topologías de grafos de una, dos o hasta tres vías, este modelo cumple con una estructura lógica:
+   • Nodos: Contienen información crítica sobre su funcionamiento en tiempo real y evalúa métricas como la frecuencia de sus comandos, los niveles de resistencia operativa y la intensidad de su conexión de terahercios.
+   • Bordes: Miden directamente el retardo en la transmisión de los datos y el tiempo de procesamiento que exige cada hardware, con lo cual logra trazar un mapa fiel de la capacidad real de la red.
+
+2. Filtro por retardo: Se aplica un filtro basado en restricciones de tiempo, donde su función es identificar y aislar operaciones de comunicación de ida y vuelta que causen demoras o aumenten la complejidad sistémica. El modelo hace una evaluación constante si una operación es viable en función de la capacidad actual del Gateway y la resistencia física del dispositivo.
+
+3. Optimización de rutas: El sistema implementa un factor de fusión dinámico que examina el comportamiento general del ecosistema, evalúa la urgencia operativa de las tareas y la carga de comunicación existente y clasifica los retrasos detectados en categorías de impacto máximo y mínimo. Una vez identificados los picos de demora y los niveles críticos de resistencia, el modelo suprime las operaciones ineficientes que permite que solo prosperen las rutas de conexión ultrarrápidas y garantiza que se cumplan las estrictas exigencias del 6G sin sacrificar la estabilidad de los dispositivos.`,
+aiUsage:`La IA trabaja a través un Algoritmo de Fusión Sinérgica de Grafos y Refuerzo (SGRFA), integrando en conjunto Reinforcement Learning (RL) con topologías de grafos. Al momento de mapear la red en grafos, los atributos de conexión crean un espacio de estados continuo que informa al agente de forma inmediata las métricas críticas como latencia, capacidad de la red de retro dispersión, intensidad de la señal de terahercios, memoria y el nivel de resistencia del dispositivo.
+
+El agente ejecuta decisiones de un espacio de acciones, donde se incluyen la asignación de búfer, cambios de enrutamiento, ajuste de frecuencias y activación de relés, este comportamiento es conducido por una función de recompensa que fomenta la tasa de respuesta exitosa y penaliza los incrementos en la latencia y la complejidad de integración.
+
+El algoritmo usa atención adaptativa para fusionar la política del agente con embeddings temporales de los grafos, para asegurar la estabilidad de convergencia el factor de fusión clasifica los retrasos máximos y mínimos, la sinergia restringe las conexiones de alta resistencia y priorizar rutas ultrarrápidas`,
+findings:`Tras realizar el proceso de simulaciones se comprobó que el método DCRE supera a técnicas actuales, ya que a nivel de rendimiento el sistema tiene un retardo de latencia mínimo de 23.91 ms que representa una disminución superior al 10% frente a otros métodos y redujo la complejidad de integración al 9.22% que marca un disminución del 9.01%.
+
+También se evidenció un incremento del 11.87% en la tasa de respuesta que logra alcanzar un pico de asertividad del 96.43%, esto valida que la sinergia entre los grafos y el RL logra eliminar los cuellos de botella y posibilita la comunicación en tiempo real de ecosistemas 6G.`,
+conclusions:`El despliegue del método DCRE resuelve el desafío de la latencia en redes 6G ya que logra eliminar los cuellos de botella mediante un mapeo conjunto de la respuesta y la resistencia operativa, Se propone una futura integración utilizando técnicas de FL, arquitecturas multinodo y network slicing con el objetivo de garantizar la escalabilidad del sistema y mantener un bajo consumo energético.`,
+references:`[1] Rinesh, S., Pandian, A., Baskar, S., & Poornima, D. (2025).
+Ultra-low latency optimization in 6G consumer electronics using synergistic graph-reinforcement learning for efficient communication.
+IEEE Transactions on Consumer Electronics, 71(4), 9920–9928.
+https://doi.org/10.1109/TCE.2025.3607198`,
+url:"https://ieeexplore.ieee.org/document/11153440"
+            },
+{
+                id:27,
+                category:"Deep Learning",
+                title:"QoS-Aware Link Adaptation for Beyond 5G Networks: A Deep Reinforcement Learning Approach",
+                aiTech:"DQN",
+                problem:`La evolución hacia las redes B5G y arquitecturas 6G presenta el desafío de soportar aplicaciones heterogéneas que exigen garantías simultáneas de calidad de servicio como las tasas de datos masivas, latencia ultrabaja y una confiabilidad extrema. El problema central está en las limitaciones de los algoritmos de Link Adaptation (LA), los cuales dependen de tablas estáticas de mapeo entre el indicador de calidad del canal (CQI) y el esquema de modulación y codificación (MCS). Al estar diseñados para maximizar el rendimiento volumétrico estos enfoques sufren de errores en la cuantización y reciben una retroalimentación desactualizada a través del canal de radio que lo vuelve ineficiente e incapaz de gestionar los estrictos parámetros multidimensionales y la mitigación de latencia que exigen las redes de próxima generación.`,
+methodology:`Se desarrolló una arquitectura QDRLLA (QoS-aware Deep Reinforcement Learning-based Link Adaptation), la cual despliega un agente inteligente en la estación base con el fin de implementar de manera autónoma los recursos de capa física y de control de acceso al medio, este marco abandona el uso de heurísticas estáticas y permite que el sistema aprenda continuamente del entorno de radiofrecuencia. De esta forma logra ajustar de forma conjunta parámetros como el esquema de modulación y codificación, la potencia de transmisión y el espaciado de subportadoras mediante la selección estructurada del ancho de banda.
+
+El funcionamiento de este sistema se divide en dos etapas, una fase estática y un lazo de control dinámico. En un primer momento, la estación base ejecuta una evaluación estática donde analiza las tolerancias de latencia y la tasa de datos exigida por el equipo del usuario (UE), le asigna una parte del ancho de banda con un espaciado de subportadoras inicial que servirá como línea base. Una vez establecida la conexión se activa el lazo cerrado de optimización donde la estación base monitorea constantemente los reportes provenientes del mecanismo HARQ del usuario.
+
+La retroalimentación permite recalibrar la modulación y la potencia para los intervalos de tiempo subsiguientes asegurando un ajuste continuo que depende directamente del éxito o fracaso de las transmisiones en la capa de control de acceso al medio.
+
+La eficacia de la arquitectura fue validada con la implementación de un entorno de simulación riguroso utilizando herramientas estandarizadas para los protocolos 5G. Bajo este escenario administraron tráfico desde la aplicación y lo procesaron a través de las capas de control de enlace de radio y física. También se incluyeron modelos avanzados para replicar las condiciones reales del canal, donde fue incluido el desvanecimiento por trayectorias múltiples, la pérdida de propagación en el espacio libre y el ruido blanco gaussiano aditivo (AWGN) en espectros inferiores a los siete gigahercios.`,
+aiUsage:`El centro de la solución es un agente de DRL basado en una red Deep Q-Network (DQN), para mitigar la observabilidad parcial del canal y los errores de información el sistema no usa un valor instantáneo sino que utiliza un vector secuencial con el historial de reportes CQI del usuario. La memoria temporal da una ventaja predictiva sobre las tablas estáticas tradicionales al inferir los gradientes de degradación de la señal.
+
+Para la toma de decisiones, el espacio de acción incluye 84 opciones, resultado de combinar 28 índices de modulación con tres niveles de potencia. Su convergencia es guiada por una función de recompensa multiobjetivo que penaliza el incumplimiento de la latencia, confiabilidad y tasa de datos mientras que premia la eficiencia espectral al obligar a la IA a utilizar la mínima potencia necesaria para sostener la sesión, optimizando el consumo energético.
+
+La arquitectura adapta su capa de entrada al historial del canal y emplea dos capas ocultas conectadas de 48 y 24 neuronas con activación ReLU para modelar la profunda no linealidad de la radiofrecuencia y su capa de salida proyecta los 84 valores Q de ganancia esperada.`,
+findings:`El análisis demostró que la red DQN supera a los algoritmos heurísticos como OLLA (Outer Loop Link Adaptation) ya que logra el BLER (Block Error Rate) y la latencia dentro de los márgenes que exigen los tráficos URLLC y eMBB. Mientras los métodos tradicionales saturan el canal para maximizar el rendimiento bruto provocando retransmisiones masivas HARQ y degradan la latencia, el agente inteligente organiza los recursos de forma predictiva para operar con una sobrecarga mínima de retransmisión.
+
+Un hallazgo clave fue la dinámica conjunta entre el espaciado de subportadoras y la potencia de transmisión, donde se constató que incrementar el SCS a 60 kHz reduce drásticamente los intervalos temporales de los símbolos OFDM y mitiga la latencia, con esto el algoritmo logra equilibrar las variables con éxito y obtiene métricas de eficiencia energética superiores.`,
+conclusions:`La integración de arquitecturas DQN en los bloques lógicos Link Adaptation (LA) consolida un salto esencial para el núcleo y la capa de acceso de las redes B5G y comprueba que inferir políticas no lineales a partir de historiales de datos autoriza a las estaciones base para resolver escenarios complejos de calidad de servicio, exigencias operativas que resultan matemáticamente imposible mediante las formulaciones heurísticas tradicionales.`,
+references:`[1] Parsa, A., Moghim, N., & Shetty, S. (2025).
+QoS-aware link adaptation for beyond 5G networks: A deep reinforcement learning approach.
+IEEE Open Journal of the Communications Society, 6, 6368–6382.
+https://doi.org/10.1109/OJCOMS.2025.3593836`,
+url:"https://ieeexplore.ieee.org/document/11104833"
+            },
+{
+                id:28,
+                category:"Deep Learning",
+                title:"QoS Prediction for Component Services in 5G via Graph-Based Deep Reinforcement Learning",
+                aiTech:"DDPQ",
+                problem:`El surgimiento de aplicaciones de nueva generación en redes 5G como la conducción autónoma y el Internet Industrial de las Cosas (IIoT), exige un estricto cumplimiento de los Acuerdos de Nivel de Servicio (SLA). Estas aplicaciones dependen de servicios distribuidos geográficamente, donde la Calidad de Servicio (QoS) medida mediante latencia, tiempo de respuesta o pérdida de paquetes, varía por la alta movilidad de los usuarios entre diferentes estaciones base.
+
+La problemática está en que los métodos actuales de predicción de calidad de servicio no logran extraer las características espaciotemporales generadas por esta movilidad y afecta la forma de interpretar los datos multidimensionales. Además de utilizar una única regla de iteración algorítmica con lo que los modelos suelen quedar atrapados en óptimos locales, reduciendo la precisión de la predicción y limitando la adaptación eficiente del servicio.`,
+methodology:`Para abordar la predicción incorrecta de la Calidad de Servicio, la investigación modela una factorización de tensores basada en Graph-based Deep Reinforcement Learning (GDRL), donde los datos históricos de requerimientos de red y las trayectorias de movilidad de los Equipos de usuario (UE) se organizan en un grafo bidireccional evolutivo en el tiempo. Este grafo se conforma por un tensor de Calidad de Servicio que almacena métricas de observación y datos faltantes de los servicios, y también un tensor adyacente encargado de representar espacialmente los movimientos de los usuarios entre diferentes RANs.
+
+La metodología realiza la extracción de características espaciotemporales del grafo utilizando una Spatio-Temporal-Recurrent-based Graph Attention Network (STR-GAT), mediante la concatenación de las características del estado temporal actual y del anterior, con esto el modelo logra capturar la evolución dinámica de los requerimientos topológicos y a través de un mecanismo de atención adaptativo, asigna mayores pesos a las conexiones entre estaciones base con una migración masiva de usuarios para conservar el impacto que tiene la movilidad sobre el desgaste de la calidad de la señal.
+
+Para completar los datos faltantes del tensor de calidad de servicio, la investigación reemplaza las reglas de optimización únicas y estáticas por un agente de aprendizaje automático que paraleliza múltiples reglas de iteración y gradientes algorítmicos.`,
+aiUsage:`Se implementó una arquitectura QoS Prediction of Component Services (QPCS), bajo un enfoque de Deep Reinforcement Learning (DRL). En específico se utiliza la técnica Deep Deterministic Policy Gradient (DDPG), modelando un entorno dinámico Markov Decision Process (MDP), el cual funciona mediante un proceso clásico de actualización iterativa de una tripleta. En este proceso el espacio de estado está compuesto por los tensores de red originales y procesados mientras que el espacio de acción se define mediante vectores continuos que determinan la proporción de reglas de factorización tensorial a aplicar y la recompensa se calcula a partir del error residual negativo entre la topología real y la inferida que incentiva al agente a reducir los errores de predicción.
+
+La red neuronal Spatio-Temporal-Recurrent-based Graph Attention Network (STR-GAT) funciona como el núcleo que se encarga de extraer las características topológicas dentro de la red de actores de la arquitectura DDPG, esta red incorpora múltiples capas de atención junto con un mecanismo multi-head para procesar en paralelo los flujos de tensores de red y estabilizar el aprendizaje de auto atención.
+
+Las salidas atraviesan un módulo de fusión de características que usa funciones no lineal softmax para definir la selección de acciones. De este modo el agente interactúa con el entorno a partir de una comprensión profunda de las variaciones espaciotemporales generadas por los traspasos de señal.
+
+Para evitar el overfitting el modelo integra redes predictivas y redes objetivo. Además, incorpora ruido gaussiano con decadencia progresiva de varianza para equilibrar las fases de exploración y explotación y a su vez aplica un esquema de suavizado de acciones para reducir cambios erráticos en la política de inferencia, junto con un búfer de repetición jerárquico que almacena las transiciones de experiencia.`,
+findings:`Tras las pruebas realizadas se demostró que el método QPCS superó a los métodos convencionales de factorización matricial y a las estrategias de recuperación de datos basadas en arquitecturas tradicionales de Deep Learning. El modelo redujo el error predictivo, alcanzando mejoras del 70% en su exactitud frente a modelos iterativos, estos resultados validan su capacidad para modelar distribuciones no lineales de requerimientos técnicos y enfrentar la escasez de datos provocada por la alta fluctuación espacial.
+
+El análisis numérico evidencio una elevada eficiencia computacional del modelo QPCS, gracias a la paralelización de reglas matemáticas y a la optimización de la memoria de repetición priorizada que redujo en gran medida el esfuerzo iterativo que permitió mantener tiempos de ejecución estables en milisegundos y segundos.`,
+conclusions:`La integración de redes de atención basadas en grafos con esquemas de DRL representa un avance importante frente a los métodos convencionales de reconstrucción de tensores.
+
+La arquitectura demuestra que permite predecir con alta precisión la degradación de los servicios 5G, reduciendo la incertidumbre causada por la movilidad de los usuarios y proporcionando una base sólida para la gestión autónoma de recursos.`,
+references:`[1] Huang, H., Wang, Q., Min, G., Wang, M., & Wu, D. O. (2025).
+QoS prediction for component services in 5G via graph-based deep reinforcement learning.
+IEEE Transactions on Mobile Computing, 24(12), 13520–13534.
+DOI: 10.1109/TMC.2025.3591783`,
+url:"https://ieeexplore.ieee.org/document/11091517"
+            },
+{
+                id:29,
+                category:"Deep Learning",
+                title:"Traffic Priority-Aware 5G NR-U/Wi-Fi Coexistence with Deep Reinforcement Learning",
+                aiTech:"MO-DQN",
+                problem:`La investigación surge debido a que la coexistencia en el espectro no licenciado sub-7 GHz entre redes celulares 5G NR-U y redes Wi-Fi presenta una alta probabilidad de colisiones severas. El protocolo utilizado en 5G conocido como LBT (Listen-Before-Talk) muestra limitaciones porque la finalización de su proceso de escucha no coincide con los límites de ranura de la transmisión celular y eso genera ocupaciones cruzadas e ineficiencias en el canal.
+
+La problemática está en que la literatura existente no ofrece una comparación integral de los mecanismos de mitigación de colisiones propuestos. Además, las soluciones previas no consideran el impacto del tráfico con múltiples clases de prioridad, comprometiendo los requisitos de latencia ultrabaja y alta confiabilidad característicos de las transmisiones URLLC (Ultra-Reliable Low-Latency Communication).`,
+methodology:`Con una ampliaron de un modelo de simulación de eventos discretos mediante la integración de redes inalámbricas locales y celulares, se permitió analizar de forma realista un entorno de coexistencia donde todos los transmisores operan con memorias intermedias saturadas y una capa física libre de errores. A partir de este punto, se realizó una comparativa entre distintos protocolos de acceso al medio, donde se evaluo métricas como la probabilidad de colisión intranacional, eficiencia del canal, retardo medio de acceso y la equidad del tiempo en el aire mediante el JFI (Jain’s Fairness Index).
+
+La metodología tomo dos enfoques orientados a proteger los nodos de alta prioridad frente a nodos de menor prioridad, denominados PC3 (Priority Class 3), y estaciones Wi-Fi concurrentes. El primer esquema es un método determinista de omisión de transmisiones, aplicado en redes celulares donde la estación base ordena dinámicamente a los transmisores subprioritarios ceder sus oportunidades de envío y el segundo enfoque fue diseñado para entornos de coexistencia no controlados con Wi-Fi, donde incorpora una arquitectura de Deep Reinforcement Learning (DRL) para el control autónomo y paramétrico del acceso al medio.`,
+aiUsage:`La IA fue implementada mediante una arquitectura MO-DQN (Multi-Objective Deep Q-Network) para resolver la dificultad de controlar los nodos transmisores Wi-Fi en escenarios de coexistencia. El entorno de radiofrecuencia se representa con un espacio de estado continuo compuesto por la eficiencia espectral del sistema Wi-Fi y de los nodos celulares de baja prioridad, la contribución porcentual del retardo de los nodos críticos PC1 (Priority Class 1) respecto al retardo total, y las dimensiones actuales de las CW (Contention Windows) en ambos entornos. Con este vector de observación los agentes toman decisiones sobre un espacio de acción discreto de siete opciones, modificando el tamaño de la ventana de contención mediante operaciones exponenciales en base dos con rangos limitados entre 15 y 1023 unidades temporales.
+
+El modelo incorpora un mecanismo de escalarización que normaliza el retardo crítico y el índice de equidad dentro de rangos probabilísticos comunes, integrados en una única función de recompensa controlada por un parámetro alfa, el núcleo del sistema es una red neuronal profunda (NN) compuesta por capas ocultas de 128 x 64 x 7 perceptrones. Para el entrenamiento se aplica una política épsilon-avariciosa donde la probabilidad de acciones aleatorias disminuye progresivamente de 90 a 0,1%.
+
+Las transiciones generadas durante el aprendizaje se almacenan y procesan en lotes de 32 muestras mediante el optimizador Adam (Adaptive Moment Estimation), el cual utiliza un factor de descuento de 0,7 y una tasa de aprendizaje de 1x10^-3 para actualizar estocásticamente los pesos sinápticos que permite a la red seleccionar de forma determinista la acción que maximiza la recompensa durante la ejecución.`,
+findings:`Las simulaciones determinaron que las arquitecturas basadas en desincronización y reserva de canal presentan un bajo desempeño en entornos mixtos, debido a la fuerte degradación de la eficiencia del sistema. El protocolo gCR-LBT, una variante que introduce espacios de resolución de colisiones en la señal incorpora espacios de resolución de colisiones en la señal y logra mitigar de forma eficaz las contenciones asimétricas y lo consolida como la alternativa con mejor rendimiento global.
+
+Los resultados confirmaron que el algoritmo protege los requerimientos temporales del tráfico crítico y reduce el crecimiento exponencial del retardo característico de los sistemas reactivos. De igual forma las simulaciones evidenciaron que el ajuste del hiperparámetro alfa permite a la estación base priorizar matemáticamente a los nodos de latencia ultrabaja aunque esto implica una reducción proporcional en la equidad global de transmisión.`,
+conclusions:`El despliegue concurrente de la red celular con soporte de minirranuras de resolución constituye el protocolo pasivo óptimo para mitigar interferencias en el espectro compartido. Al acoplar dicho protocolo a una capa activa de aprendizaje por refuerzo profundo estructurada bajo recompensas multiobjetivo, es plenamente viable garantizar parámetros de latencia ínfimos para el tráfico prioritario de misión crítica y, paralelamente, propiciar una distribución operativa justa frente al ecosistema Wi-Fi subyacente.
+
+El despliegue de una red celular con soporte de minirranuras de resolución representa el protocolo pasivo más eficiente para mitigar interferencias en espectros compartidos, al integrar este protocolo con una capa activa de DRL basada en recompensas multiobjetivo es posible garantizar niveles mínimos de latencia para tráfico prioritario de misión crítica y a la vez mantiene una distribución operativa equitativa frente al ecosistema Wi-Fi coexistente.`,
+references:`[1] Fasihi, M. R., & Mark, B. L. (2024).
+Traffic priority-aware 5G NR-U/Wi-Fi coexistence with deep reinforcement learning.
+En Proceedings of the 2024 IEEE 100th Vehicular Technology Conference (VTC2024-Fall) (pp. 1–6). IEEE.
+DOI: 10.1109/VTC2024-Fall63153.2024.10757867`,
+url:"https://ieeexplore.ieee.org/document/10757867"
+            },
+{
+                id:30,
+                category:"Deep Learning",
+                title:"Deep Reinforcement Learning Based Joint Uplink and Downlink Resource Allocation for URLLC",
+                aiTech:"Multiple",
+                problem:`Existe la necesidad de garantizar los estrictos requisitos de latencia ultrabaja y alta fiabilidad propios de las redes 6G orientadas a aplicaciones críticas donde la asignación de recursos en estas arquitecturas se ha realizado de forma aislada y optimiza por separado los enlaces de subida y bajada subestimando los retardos cíclicos.
+
+El problema consiste en minimizar el retardo total de ida y vuelta de los paquetes de datos en un entorno multiusuario URLLC (Ultra-Reliable and Low-Latency Communication), basado en un esquema FDD (Frequency Division Duplexing) y multiplexación OFDMA (Orthogonal Frequency-Division Multiple Access) en antenas MISO (Multiple-Input Single-Output). Para ello se requiere una implementación simultánea del encolamiento dinámico y de la asignación espaciotemporal bidireccional sin generar consumo adicional de espectro y bajo las limitaciones físicas de las transmisiones de longitud de bloque finita.`,
+methodology:`Se aborda el problema con una optimización conjunta de recursos de tiempo y frecuencia mediante un esquema de toma de decisiones secuencial orientado a minimizar el retardo total de transmisión y encolamiento en los enlaces ascendente y descendente. Para modelar de forma precisa la tasa de codificación bajo restricciones estrictas de latencia fue utilizada la teoría de bloques de longitud finita debido a que las aproximaciones clásicas basadas en probabilidades de error cercanas a cero no resultan adecuadas para escenarios de baja latencia.
+
+Dentro de la formulación las variables de decisión determinan qué subcanal de radiofrecuencia es asignado a cada paquete y cuántas ranuras de tiempo se otorgan dinámicamente a la transmisión. Debido a la complejidad de las restricciones físicas y matemáticas necesarias para garantizar transmisiones en el tiempo asignado, se reformulo el problema mediante un método Lagrangiano, incorporando funciones indicadoras condicionales que verifican si la asignación temporal y frecuencial satisface las condiciones de transmisión sin desperdiciar capacidad del canal.
+
+Por la complejidad de la investigación, se modela la dinámica del sistema transformando la asignación de recursos de los enlaces ascendente y descendente en procesos MDP (Markov Decision Process) independientes. En estos entornos el estado del sistema incluye información del canal multipath, tamaño de paquetes y tiempos acumulados en las colas de transmisión, donde el sistema interactúa mediante funciones de recompensa que penalizan los retardos de ida y vuelta permitiendo converger hacia políticas de control óptimas bajo las restricciones operativas de la red celular.`,
+aiUsage:`La implementación de la IA se basa en un algoritmo de DRL (Deep Reinforcement Learning) sustentado en gradientes de política PPO (Proximal Policy Optimization) que a diferencia de enfoques tradicionales que utilizan agentes independientes asíncronos o un único agente centralizado con alta sobrecarga computacional, la arquitectura propuesta adopta un modelo compuesto por dos actores independientes y un crítico compartido, donde el primer actor genera decisiones de enrutamiento para el enlace ascendente, el segundo procesa el enlace descendente y el crítico evalúa conjuntamente ambos estados para estimar las funciones de valor global del entorno.
+
+Los tres componentes emplean bloques CNN (Convolutional Neural Network) y capas de agrupamiento máximo para extraer características multidimensionales del estado del canal para reducir la densidad antes de concatenarlas con variables escalares de la red y procesarlas mediante múltiples capas FC (Fully Connected). Para gestionar de forma simultanea las decisiones relacionadas con subcanales y asignación temporal, la capa final incorpora una estructura multicabezal que paraleliza las salidas inferenciales de los actores.
+
+Para mejorar la convergencia del algoritmo PPO dentro de la red celular, se integraron tres mejoras:
+
+1. La primera, consiste en un enmascaramiento matricial de acciones que bloquea selecciones físicamente inválidas como asignar múltiples paquetes a una misma portadora, donde se aplican penalizaciones logarítmicas negativas infinitas antes de la función de activación para anular la probabilidad de acciones conflictivas.
+
+2. La segunda, introduce un mecanismo de asistencia para la planificación temporal, donde la red combina su salida estocástica con una cuota de tiempo estimada heurísticamente a partir de la relación señal-ruido y el tamaño del bloque para reducir la exploración ineficiente.
+
+3. La tercera, sucede en el hiperparámetro de recorte, el cual está encargado de evitar actualizaciones destructivas entre políticas y se ajusta dinámicamente de acuerdo con los estrictos objetivos de tolerancia al error y fiabilidad de los servicios URLLC.`,
+findings:`Los resultados obtenidos mediante las simulación demostraron que la restructuración de la red neuronal con un crítico unificado mejora la minimización del retardo bidireccional en entornos estocásticos, donde la arquitectura propuesta redujo el retardo total 4% frente a modelos DDPG (Deep Deterministic Policy Gradient) y superó en un 5% a arquitecturas DRL con agentes asíncronos independientes y a la vez disminuyó los retardos en un 17% respecto a esquemas FCFS (First Come First Serve) con lo cual pudo alcanzar una ventaja del 29% frente a planificaciones radioeléctricas aleatorias.
+
+La arquitectura mostró mejoras importantes en la calidad de transmisión ya que los resultados evidenciaron una disminución significativa de fallos por falta de capacidad iterativa y el menor porcentaje de bloques temporales desperdiciados entre los modelos evaluados.`,
+conclusions:`La investigación demuestra que la gestión paralela y predictiva de recursos en enlaces ascendentes y descendentes sobre transmisiones de bloque finito representa un elemento clave para el enrutamiento de baja latencia en espectros saturados.
+
+La integración de arquitecturas multicabezales basadas en DRL junto con mecanismos de supresión de acciones atípicas y control de actualizaciones algorítmicas ofrece un nivel de optimización superior frente a los modelos convencionales de radiofrecuencia.`,
+references:`[1] L. Zhang, Y. Zhang and J. Zheng, "Deep Reinforcement Learning Based Joint Uplink and Downlink Resource Allocation for URLLC," in IEEE Transactions on Vehicular Technology, vol. 74, no. 4, pp. 6048-6063, April 2025, doi: 10.1109/TVT.2024.3510548.`,
+url:"https://ieeexplore.ieee.org/document/10772607"
+            },
+{
+                id:31,
+                category:"Deep Learning",
                 title:"",
                 aiTech:"",
                 problem:"",
-                methodology:"",
-                aiUsage:"",
-                findings:"",
-                conclusions:"",
-                references:`
-    [1] Autor, A. (2025).
-    Titulo del paper.
-    Revista o Conferencia.
-    https://doi.org/xxxxx
-`,
-                url:""
+methodology:"",
+aiUsage:"",
+findings:"",
+conclusions:"",
+references:`[1] Cai, Y., Cheng, P., Chen, Z., Xiang, W., Vucetic, B., & Li, Y. (2025).
+Graphic Deep Reinforcement Learning for Dynamic Resource Allocation in Space-Air-Ground Integrated Networks.
+IEEE Journal on Selected Areas in Communications, 43(1), 334–349.
+https://doi.org/10.1109/JSAC.2024.3460086`,
+url:"https://ieeexplore.ieee.org/document/10681113"
+            },
+{
+                id:32,
+                category:"Deep Learning",
+                title:"",
+                aiTech:"",
+                problem:"",
+methodology:"",
+aiUsage:"",
+findings:"",
+conclusions:"",
+references:`[1] Cai, Y., Cheng, P., Chen, Z., Xiang, W., Vucetic, B., & Li, Y. (2025).
+Graphic Deep Reinforcement Learning for Dynamic Resource Allocation in Space-Air-Ground Integrated Networks.
+IEEE Journal on Selected Areas in Communications, 43(1), 334–349.
+https://doi.org/10.1109/JSAC.2024.3460086`,
+url:"https://ieeexplore.ieee.org/document/10681113"
+            },
+{
+                id:33,
+                category:"Deep Learning",
+                title:"",
+                aiTech:"",
+                problem:"",
+methodology:"",
+aiUsage:"",
+findings:"",
+conclusions:"",
+references:`[1] Cai, Y., Cheng, P., Chen, Z., Xiang, W., Vucetic, B., & Li, Y. (2025).
+Graphic Deep Reinforcement Learning for Dynamic Resource Allocation in Space-Air-Ground Integrated Networks.
+IEEE Journal on Selected Areas in Communications, 43(1), 334–349.
+https://doi.org/10.1109/JSAC.2024.3460086`,
+url:"https://ieeexplore.ieee.org/document/10681113"
+            },
+{
+                id:34,
+                category:"Deep Learning",
+                title:"",
+                aiTech:"",
+                problem:"",
+methodology:"",
+aiUsage:"",
+findings:"",
+conclusions:"",
+references:`[1] Cai, Y., Cheng, P., Chen, Z., Xiang, W., Vucetic, B., & Li, Y. (2025).
+Graphic Deep Reinforcement Learning for Dynamic Resource Allocation in Space-Air-Ground Integrated Networks.
+IEEE Journal on Selected Areas in Communications, 43(1), 334–349.
+https://doi.org/10.1109/JSAC.2024.3460086`,
+url:"https://ieeexplore.ieee.org/document/10681113"
+            },
+{
+                id:35,
+                category:"Deep Learning",
+                title:"",
+                aiTech:"",
+                problem:"",
+methodology:"",
+aiUsage:"",
+findings:"",
+conclusions:"",
+references:`[1] Cai, Y., Cheng, P., Chen, Z., Xiang, W., Vucetic, B., & Li, Y. (2025).
+Graphic Deep Reinforcement Learning for Dynamic Resource Allocation in Space-Air-Ground Integrated Networks.
+IEEE Journal on Selected Areas in Communications, 43(1), 334–349.
+https://doi.org/10.1109/JSAC.2024.3460086`,
+url:"https://ieeexplore.ieee.org/document/10681113"
+            },
+{
+                id:36,
+                category:"Deep Learning",
+                title:"",
+                aiTech:"",
+                problem:"",
+methodology:"",
+aiUsage:"",
+findings:"",
+conclusions:"",
+references:`[1] Cai, Y., Cheng, P., Chen, Z., Xiang, W., Vucetic, B., & Li, Y. (2025).
+Graphic Deep Reinforcement Learning for Dynamic Resource Allocation in Space-Air-Ground Integrated Networks.
+IEEE Journal on Selected Areas in Communications, 43(1), 334–349.
+https://doi.org/10.1109/JSAC.2024.3460086`,
+url:"https://ieeexplore.ieee.org/document/10681113"
+            },
+{
+                id:37,
+                category:"Deep Learning",
+                title:"",
+                aiTech:"",
+                problem:"",
+methodology:"",
+aiUsage:"",
+findings:"",
+conclusions:"",
+references:`[1] Cai, Y., Cheng, P., Chen, Z., Xiang, W., Vucetic, B., & Li, Y. (2025).
+Graphic Deep Reinforcement Learning for Dynamic Resource Allocation in Space-Air-Ground Integrated Networks.
+IEEE Journal on Selected Areas in Communications, 43(1), 334–349.
+https://doi.org/10.1109/JSAC.2024.3460086`,
+url:"https://ieeexplore.ieee.org/document/10681113"
+            },
+{
+                id:38,
+                category:"Deep Learning",
+                title:"",
+                aiTech:"",
+                problem:"",
+methodology:"",
+aiUsage:"",
+findings:"",
+conclusions:"",
+references:`[1] Cai, Y., Cheng, P., Chen, Z., Xiang, W., Vucetic, B., & Li, Y. (2025).
+Graphic Deep Reinforcement Learning for Dynamic Resource Allocation in Space-Air-Ground Integrated Networks.
+IEEE Journal on Selected Areas in Communications, 43(1), 334–349.
+https://doi.org/10.1109/JSAC.2024.3460086`,
+url:"https://ieeexplore.ieee.org/document/10681113"
+            },
+{
+                id:39,
+                category:"Deep Learning",
+                title:"",
+                aiTech:"",
+                problem:"",
+methodology:"",
+aiUsage:"",
+findings:"",
+conclusions:"",
+references:`[1] Cai, Y., Cheng, P., Chen, Z., Xiang, W., Vucetic, B., & Li, Y. (2025).
+Graphic Deep Reinforcement Learning for Dynamic Resource Allocation in Space-Air-Ground Integrated Networks.
+IEEE Journal on Selected Areas in Communications, 43(1), 334–349.
+https://doi.org/10.1109/JSAC.2024.3460086`,
+url:"https://ieeexplore.ieee.org/document/10681113"
+            },
+{
+                id:40,
+                category:"Deep Learning",
+                title:"",
+                aiTech:"",
+                problem:"",
+methodology:"",
+aiUsage:"",
+findings:"",
+conclusions:"",
+references:`[1] Cai, Y., Cheng, P., Chen, Z., Xiang, W., Vucetic, B., & Li, Y. (2025).
+Graphic Deep Reinforcement Learning for Dynamic Resource Allocation in Space-Air-Ground Integrated Networks.
+IEEE Journal on Selected Areas in Communications, 43(1), 334–349.
+https://doi.org/10.1109/JSAC.2024.3460086`,
+url:"https://ieeexplore.ieee.org/document/10681113"
             },
         ];
 
